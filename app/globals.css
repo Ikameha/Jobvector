@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light Mode - Clean & Premium */
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
+
+  /* Primary: Neon Blue */
+  --primary: #3D7CFF;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary: Cyan Luminescent */
+  --secondary: #00E1FF;
+  --secondary-foreground: #0A0A0A;
+
+  /* Muted: Silver Grey */
+  --muted: #E8ECF2;
+  --muted-foreground: #64748B;
+
+  /* Accent: Subtle Glass Effect */
+  --accent: rgba(61, 124, 255, 0.1);
+  --accent-foreground: #3D7CFF;
+
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #3D7CFF;
+
+  --radius: 0.75rem;
+
+  /* Chart Colors */
+  --chart-1: #3D7CFF;
+  --chart-2: #00E1FF;
+  --chart-3: #7C3AED;
+  --chart-4: #F59E0B;
+  --chart-5: #10B981;
+}
+
+.dark {
+  /* Dark Mode - Deep Black & Neon */
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --card: #121212;
+  --card-foreground: #FFFFFF;
+  --popover: #121212;
+  --popover-foreground: #FFFFFF;
+
+  --primary: #3D7CFF;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #00E1FF;
+  --secondary-foreground: #0A0A0A;
+
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+
+  --accent: rgba(61, 124, 255, 0.2);
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #2D2D2D;
+  --input: #2D2D2D;
+  --ring: #3D7CFF;
+
+  --chart-1: #3D7CFF;
+  --chart-2: #00E1FF;
+  --chart-3: #A78BFA;
+  --chart-4: #FBBF24;
+  --chart-5: #34D399;
+}
+
+@theme inline {
+  --font-sans: "Inter", "sans-serif";
+  --font-mono: "Geist Mono", "monospace";
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 0.25rem);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-md border border-border/50 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 10px rgba(61, 124, 255, 0.5);
+  }
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+}

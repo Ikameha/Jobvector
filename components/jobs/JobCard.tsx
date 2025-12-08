@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Building2, MapPin, DollarSign, Clock, ArrowRight, Bookmark } from "lucide-react"
 import Link from "next/link"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface JobCardProps {
     job: Job
@@ -95,6 +96,43 @@ export function JobCard({ job, matchScore }: JobCardProps) {
                     <Button variant="outline" size="icon">
                         <Bookmark className="w-4 h-4" />
                     </Button>
+                </div>
+            </div>
+        </GlassCard>
+    )
+}
+export function JobCardSkeleton() {
+    return (
+        <GlassCard intensity="light" className="p-5">
+            <div className="flex flex-col h-full justify-between">
+                <div>
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                        <div className="flex items-start gap-3 w-full">
+                            <Skeleton className="w-12 h-12 rounded-xl" />
+                            <div className="space-y-2 flex-1">
+                                <Skeleton className="h-6 w-3/4" />
+                                <Skeleton className="h-4 w-1/2" />
+                            </div>
+                        </div>
+                        <Skeleton className="w-12 h-12 rounded-full" />
+                    </div>
+
+                    <div className="flex gap-4 mb-4">
+                        <Skeleton className="h-4 w-20" />
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-4 w-16" />
+                    </div>
+
+                    <div className="flex gap-2 mb-6">
+                        <Skeleton className="h-6 w-16 rounded-full" />
+                        <Skeleton className="h-6 w-20 rounded-full" />
+                        <Skeleton className="h-6 w-12 rounded-full" />
+                    </div>
+                </div>
+
+                <div className="flex gap-2 mt-auto">
+                    <Skeleton className="h-10 flex-1" />
+                    <Skeleton className="h-10 w-10" />
                 </div>
             </div>
         </GlassCard>

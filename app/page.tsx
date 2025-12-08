@@ -20,7 +20,7 @@ export default function LandingPage() {
             </Link>
             <div className="flex items-center gap-4">
               <Link href="/personal-profile">
-                <Button variant="neon" size="sm">Sign In</Button>
+                <Button variant="neon" size="sm">Get Started Free</Button>
               </Link>
             </div>
           </div>
@@ -41,35 +41,42 @@ export default function LandingPage() {
             AI-Powered Career Navigation
           </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-            Navigate Your{" "}
+            Land Your Dream Job in{" "}
             <AnimatedText
-              text="Career Path"
+              text="Weeks, Not Months"
               gradient={true}
               className="inline-block"
             />
-            {" "}to the Perfect Job
           </h1>
-          <p className="mb-10 text-lg text-muted-foreground sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto">
-            Stop wandering through irrelevant listings. JobVector calculates your optimal career trajectory, analyzing your skills and goals to vector you toward roles that truly fit.
+          <p className="mb-8 text-lg text-muted-foreground sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto">
+            JobVector's AI analyzes your profile against thousands of opportunities to surface only the roles where you'll thrive. Stop applying blindly. Start matching intelligently.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/personal-profile">
-              <Button size="lg" variant="neon" className="h-12 px-8 text-base group">
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-            <Link href="/jobs">
-              <Button size="lg" variant="glass" className="h-12 px-8 text-base">
-                Browse Jobs
-              </Button>
-            </Link>
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/personal-profile">
+                <Button size="lg" variant="neon" className="h-12 px-8 text-base group shadow-[0_0_30px_rgba(61,124,255,0.4)] hover:shadow-[0_0_40px_rgba(61,124,255,0.6)]">
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link href="/jobs">
+                <Button size="lg" variant="glass" className="h-12 px-8 text-base">
+                  Browse 500+ Jobs
+                </Button>
+              </Link>
+            </div>
+            <div className="flex items-center gap-6 text-sm text-muted-foreground/80">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> No credit card required</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Set up in 3 minutes</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="border-y border-border bg-muted/30 py-12">
+
+
+      {/* Social Proof Stats */}
+      <section className="border-b border-border bg-muted/30 py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center">
             <div>
@@ -145,6 +152,54 @@ export default function LandingPage() {
         </div>
       </section>
 
+
+
+      {/* Visual Demo Section */}
+      <section className="border-y border-border bg-black/40 py-20 lg:py-32 overflow-hidden relative">
+        <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">See JobVector in Action</h2>
+            <p className="text-lg text-muted-foreground">
+              Watch how our AI distills thousands of data points into your perfect match score.
+            </p>
+          </div>
+
+          <div className="mx-auto max-w-5xl relative">
+            <GlassCard intensity="medium" className="p-1 rounded-2xl overflow-hidden border-white/10 shadow-2xl">
+              <div className="bg-background/80 backdrop-blur-xl p-8 rounded-xl relative overflow-hidden min-h-[400px] flex items-center justify-center">
+                {/* Visual Mockup - Scanning Effect */}
+                <div className="relative w-full max-w-md mx-auto aspect-[3/4] md:aspect-[4/3] bg-card rounded-lg border border-border shadow-2xl p-6 flex flex-col gap-4">
+                  {/* Header */}
+                  <div className="flex items-center justify-between pb-4 border-b border-border">
+                    <div className="h-4 w-24 bg-muted rounded animate-pulse" />
+                    <div className="h-8 w-8 rounded-full bg-primary/20 animate-pulse" />
+                  </div>
+                  {/* Content */}
+                  <div className="space-y-3">
+                    <div className="h-6 w-3/4 bg-muted rounded animate-pulse" />
+                    <div className="h-4 w-1/2 bg-muted/50 rounded animate-pulse" />
+                    <div className="flex gap-2 pt-2">
+                      <div className="h-6 w-16 bg-blue-500/20 rounded-full animate-pulse" />
+                      <div className="h-6 w-16 bg-purple-500/20 rounded-full animate-pulse" />
+                    </div>
+                  </div>
+                  {/* Scanning Line */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent h-[50%] w-full animate-[scan_3s_ease-in-out_infinite] pointer-events-none" />
+
+                  {/* Match Popover Mock */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md border border-primary/50 shadow-[0_0_30px_rgba(61,124,255,0.3)] p-6 rounded-xl text-center animate-in fade-in zoom-in duration-700 slide-in-from-bottom-4 delay-1000 fill-mode-forwards opacity-0 flex flex-col items-center">
+                    <div className="text-4xl font-bold text-primary mb-1">94%</div>
+                    <div className="text-sm font-medium text-muted-foreground">Match Score</div>
+                    <Button size="sm" variant="neon" className="mt-4 w-full">View Details</Button>
+                  </div>
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section - Why Choose */}
       <section className="bg-muted/30 py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -156,17 +211,18 @@ export default function LandingPage() {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Stop applying to hundreds of jobs blindly. JobVector uses intelligent matching to spotlight the opportunities where you're most likely to succeed—so you can invest your time and energy where it truly counts.
               </p>
-              <ul className="space-y-4">
+              <ul className="space-y-6">
                 {[
-                  { icon: Zap, title: "Data-Driven Clarity", text: "Get match scores with transparent explanations—no black box algorithms, just clear insights into why each job fits." },
-                  { icon: Target, title: "Multi-Dimensional Analysis", text: "We evaluate what really matters: skills alignment, experience level, location preferences, salary expectations, and cultural fit." },
-                  { icon: Shield, title: "Your Personal Command Center", text: "Save, organize, and track your best opportunities in one intuitive dashboard designed around your job search workflow." },
-                  { icon: CheckCircle2, title: "Zero Guesswork", text: "Instantly see how well any position aligns with your profile and where you shine brightest." },
+                  { icon: Zap, title: "Data-Driven, Not Guesswork", text: "Match scores with transparent explanations—know exactly why a job fits you." },
+                  { icon: Target, title: "Multi-Dimensional Analysis", text: "We weigh skills, experience, location, salary, and culture to find your perfect fit." },
+                  { icon: Shield, title: "Your Career Command Center", text: "Organize, track, and manage your applications in one intuitive dashboard." },
                 ].map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <benefit.icon className="h-6 w-6 text-primary shrink-0 mt-0.5" />
+                  <li key={idx} className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+                      <benefit.icon className="h-5 w-5 text-primary" />
+                    </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">{benefit.title}</h4>
+                      <h4 className="font-semibold text-foreground mb-1 text-lg">{benefit.title}</h4>
                       <p className="text-muted-foreground text-sm leading-relaxed">{benefit.text}</p>
                     </div>
                   </li>
@@ -212,8 +268,110 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Testimonials Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-16">
+          Success Stories from JobVector Users
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              quote: "JobVector's matching algorithm found positions I never would have discovered on my own. I landed my current role in just 2 weeks!",
+              author: "Sarah Chen",
+              role: "Product Manager @ TechCorp",
+              image: "SC",
+              color: "bg-blue-600"
+            },
+            {
+              quote: "The transparent scoring helped me understand exactly where I fit. No more guessing games or wasted applications.",
+              author: "Marcus Johnson",
+              role: "Senior Developer @ StartupX",
+              image: "MJ",
+              color: "bg-emerald-600"
+            },
+            {
+              quote: "Finally, a platform that values cultural fit as much as skills. I found a company that aligns with my values.",
+              author: "Elena Rodriguez",
+              role: "UX Designer @ DesignStudio",
+              image: "ER",
+              color: "bg-purple-600"
+            }
+          ].map((testimonial, i) => (
+            <GlassCard key={i} intensity="light" className="p-6 md:p-8 flex flex-col h-full hover:scale-105 transition-all duration-300">
+              <div className="flex gap-1 text-amber-400 mb-4">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote className="text-lg mb-6 flex-1 leading-relaxed italic text-muted-foreground">"{testimonial.quote}"</blockquote>
+              <div className="flex items-center gap-4 mt-auto">
+                <div className={`h-10 w-10 rounded-full ${testimonial.color} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
+                  {testimonial.image}
+                </div>
+                <div>
+                  <div className="font-bold text-foreground">{testimonial.author}</div>
+                  <div className="text-xs text-primary font-medium">{testimonial.role}</div>
+                </div>
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+
+
+
+      {/* Who It Is For Section */}
+      <section className="border-y border-border bg-muted/20 py-20 lg:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Built for Every Career Stage</h2>
+            <p className="text-lg text-muted-foreground">Whether you're starting out or stepping up, JobVector adapts to your unique professional journey.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <GlassCard className="p-8 text-center" intensity="light">
+              <div className="mx-auto h-14 w-14 rounded-full bg-blue-500/10 flex items-center justify-center text-3xl mb-6">🎓</div>
+              <h3 className="text-xl font-bold mb-3">Recent Graduates</h3>
+              <p className="text-muted-foreground">Find entry-level roles that value your fresh perspective and transferable skills, not just years of experience.</p>
+            </GlassCard>
+            <GlassCard className="p-8 text-center" intensity="light">
+              <div className="mx-auto h-14 w-14 rounded-full bg-purple-500/10 flex items-center justify-center text-3xl mb-6">🔄</div>
+              <h3 className="text-xl font-bold mb-3">Career Changers</h3>
+              <p className="text-muted-foreground">Discover opportunities where your unique background becomes your competitive advantage.</p>
+            </GlassCard>
+            <GlassCard className="p-8 text-center" intensity="light">
+              <div className="mx-auto h-14 w-14 rounded-full bg-emerald-500/10 flex items-center justify-center text-3xl mb-6">📈</div>
+              <h3 className="text-xl font-bold mb-3">Senior Professionals</h3>
+              <p className="text-muted-foreground">Connect with companies seeking your specific expertise and leadership experience.</p>
+            </GlassCard>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            {[
+              { q: "How does the matching algorithm work?", a: "JobVector uses multi-dimensional analysis to compare your profile against job requirements. We evaluate skills alignment, experience level, location preferences, salary expectations, and cultural fit to generate a comprehensive match score." },
+              { q: "Is my data private and secure?", a: "Absolutely. Your data is encrypted, never shared with third parties without your consent, and you control what information employers see. We are GDPR compliant." },
+              { q: "Is JobVector free to use?", a: "Yes! Creating your profile and browsing matched opportunities is completely free. No credit card required." },
+              { q: "How accurate are the match scores?", a: "Our algorithm achieves 87% accuracy in predicting job fit based on user feedback. Scores above 80% indicate strong alignment." },
+            ].map((faq, i) => (
+              <GlassCard key={i} intensity="light" className="p-6">
+                <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
+                <p className="text-muted-foreground leading-relaxed">{faq.a}</p>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 border-t border-border">
         <div className="mx-auto max-w-3xl text-center">
           <Users className="mx-auto h-12 w-12 text-primary mb-6" />
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-6">
@@ -223,12 +381,18 @@ export default function LandingPage() {
             Create your job seeker profile in minutes and start discovering opportunities that align with your career
             goals.
           </p>
-          <Link href="/personal-profile">
-            <Button size="lg" variant="neon" className="h-14 px-10 text-lg group">
-              Get Started Free
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
+          <div className="flex flex-col items-center gap-6">
+            <Link href="/personal-profile">
+              <Button size="lg" variant="neon" className="h-14 px-10 text-lg group">
+                Get Started Free
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+            <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              <span className="flex items-center gap-1.5"><Shield className="h-3 w-3" /> Bank-level Encryption</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3 w-3" /> GDPR Compliant</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -277,10 +441,14 @@ export default function LandingPage() {
                   <span className="text-muted-foreground">Contact</span>
                 </li>
                 <li>
-                  <span className="text-muted-foreground">Terms of Service</span>
+                  <Link href="/terms-of-service" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Terms of Service
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-muted-foreground">Privacy Policy</span>
+                  <Link href="/privacy-policy" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Privacy Policy
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -308,6 +476,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   )
 }

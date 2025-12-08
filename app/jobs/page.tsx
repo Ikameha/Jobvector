@@ -3,13 +3,16 @@
 import { useState, useEffect } from "react"
 import { AppNav } from "@/components/app-nav"
 import { JobFilters } from "@/components/jobs/JobFilters"
-import { JobCard } from "@/components/jobs/JobCard"
+import { JobCard, JobCardSkeleton } from "@/components/jobs/JobCard"
 import { fetchJobs } from "@/lib/jobApi"
 import { loadProfile } from "@/lib/storage"
 import { calculateMatchScore } from "@/lib/matchingEngine"
 import { Job, Profile, MatchScore } from "@/lib/types"
 import { GlassCard } from "@/components/ui/glass-card"
 import { ProfileRadarChart } from "@/components/profile/ProfileRadarChart"
+import { EmptyState } from "@/components/ui/empty-state"
+import { SearchX } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface JobWithScore extends Job {
   matchScore?: MatchScore
@@ -127,7 +130,7 @@ export default function JobsPage() {
             {isLoading ? (
               <div className="grid md:grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map(i => (
-                  <GlassCard key={i} className="h-48 animate-pulse bg-white/5" />
+                  <JobCardSkeleton key={i} />
                 ))}
               </div>
             ) : filteredJobs.length > 0 ? (
@@ -137,9 +140,16 @@ export default function JobsPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 text-muted-foreground">
-                No jobs found matching your criteria.
-              </div>
+              <EmptyState
+                icon={SearchX}
+                title="No jobs found"
+                description="Try adjusting your filters or search query to find more opportunities."
+                action={
+                  <Button variant="outline" onClick={clearFilters} className="mt-4">
+                    Clear Filters
+                  </Button>
+                }
+              />
             )}
           </div>
         </div>

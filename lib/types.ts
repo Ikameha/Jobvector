@@ -1,4 +1,4 @@
-// Core type definitions for Job Pulse
+// Core type definitions for JobVector
 
 export type ExperienceLevel = "entry" | "mid" | "senior" | "lead" | "executive"
 export type WorkMode = "remote" | "hybrid" | "onsite"

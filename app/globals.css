@@ -4,13 +4,17 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light Mode - Clean & Premium */
-  --background: #FFFFFF;
-  --foreground: #0A0A0A;
+  /* Light Mode - JobVector Clean */
+  --background: #FFFAFF;
+  /* Snow */
+  --foreground: #303036;
+  /* Dark Gunmetal */
+
   --card: #FFFFFF;
-  --card-foreground: #0A0A0A;
+  --card-foreground: #303036;
+
   --popover: #FFFFFF;
-  --popover-foreground: #0A0A0A;
+  --popover-foreground: #303036;
 
   /* Primary: Neon Blue */
   --primary: #3D7CFF;
@@ -18,9 +22,9 @@
 
   /* Secondary: Cyan Luminescent */
   --secondary: #00E1FF;
-  --secondary-foreground: #0A0A0A;
+  --secondary-foreground: #303036;
 
-  /* Muted: Silver Grey */
+  /* Muted: Soft Grey */
   --muted: #E8ECF2;
   --muted-foreground: #64748B;
 
@@ -46,31 +50,36 @@
 }
 
 .dark {
-  /* Dark Mode - Deep Black & Neon */
-  --background: #0A0A0A;
-  --foreground: #FFFFFF;
-  --card: #121212;
-  --card-foreground: #FFFFFF;
-  --popover: #121212;
-  --popover-foreground: #FFFFFF;
+  /* Dark Mode - JobVector Premium */
+  --background: #303036;
+  /* Dark Gunmetal */
+  --foreground: #FFFAFF;
+  /* Snow */
+
+  --card: #383840;
+  /* Slightly lighter than background */
+  --card-foreground: #FFFAFF;
+
+  --popover: #383840;
+  --popover-foreground: #FFFAFF;
 
   --primary: #3D7CFF;
   --primary-foreground: #FFFFFF;
 
   --secondary: #00E1FF;
-  --secondary-foreground: #0A0A0A;
+  --secondary-foreground: #303036;
 
-  --muted: #1E293B;
+  --muted: #404048;
   --muted-foreground: #94A3B8;
 
   --accent: rgba(61, 124, 255, 0.2);
-  --accent-foreground: #FFFFFF;
+  --accent-foreground: #FFFAFF;
 
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
 
-  --border: #2D2D2D;
-  --input: #2D2D2D;
+  --border: #484850;
+  --input: #484850;
   --ring: #3D7CFF;
 
   --chart-1: #3D7CFF;
@@ -128,11 +137,13 @@
 
 @layer utilities {
   .glass {
+    /* Updated for better contrast on Gunmetal */
     @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
   }
 
   .glass-card {
-    @apply bg-card/50 backdrop-blur-md border border-border/50 shadow-sm hover:shadow-md transition-all duration-300;
+    /* Adjusted for Gunmetal background */
+    @apply bg-card/60 backdrop-blur-md border border-white/5 shadow-sm hover:shadow-md hover:border-white/10 transition-all duration-300;
   }
 
   .text-gradient {
@@ -140,7 +151,7 @@
   }
 
   .neon-glow {
-    box-shadow: 0 0 10px rgba(61, 124, 255, 0.5);
+    box-shadow: 0 0 15px rgba(61, 124, 255, 0.4);
   }
 
   @keyframes gradient {

@@ -9,11 +9,11 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "Job Pulse - AI-Powered Job Matching Platform",
-    template: "%s | Job Pulse",
+    default: "JobVector - AI-Powered Job Matching Platform",
+    template: "%s | JobVector",
   },
   description:
-    "Find your perfect job with intelligent AI-powered matching. Job Pulse analyzes your skills, experience, and preferences to deliver personalized job recommendations with detailed match scores.",
+    "Find your perfect job with intelligent AI-powered matching. JobVector analyzes your skills, experience, and preferences to deliver personalized job recommendations with detailed match scores.",
   keywords: [
     "job search",
     "AI job matching",
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     "intelligent job search",
     "skills matching",
   ],
-  authors: [{ name: "Job Pulse Team" }],
-  creator: "Job Pulse",
-  publisher: "Job Pulse",
+  authors: [{ name: "JobVector Team" }],
+  creator: "JobVector",
+  publisher: "JobVector",
   alternates: {
     canonical: "/",
   },
@@ -32,16 +32,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "Job Pulse - AI-Powered Job Matching Platform",
+    title: "JobVector - AI-Powered Job Matching Platform",
     description:
       "Find your perfect job with intelligent AI-powered matching. Get detailed match scores based on skills, experience, location, salary, and company culture.",
-    siteName: "Job Pulse",
+    siteName: "JobVector",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Job Pulse - AI-Powered Job Matching",
+    title: "JobVector - AI-Powered Job Matching",
     description: "Find your perfect job with intelligent AI-powered matching and detailed match scores.",
-    creator: "@jobpulse",
+    creator: "@jobvector",
   },
   robots: {
     index: true,

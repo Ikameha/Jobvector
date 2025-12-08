@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
-import { ArrowRight, Target, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket } from "lucide-react"
+import { ArrowRight, Waypoints, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket, Target } from "lucide-react"
 
 export default function LandingPage() {
   return (
@@ -14,9 +14,9 @@ export default function LandingPage() {
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_0_20px_rgba(61,124,255,0.4)]">
-                <Target className="h-5 w-5 text-primary-foreground" />
+                <Waypoints className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-foreground">Job Pulse</span>
+              <span className="text-xl font-bold text-foreground">JobVector</span>
             </Link>
             <div className="flex items-center gap-4">
               <Link href="/personal-profile">
@@ -38,25 +38,24 @@ export default function LandingPage() {
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm">
             <Sparkles className="h-4 w-4" />
-            AI-Powered Job Matching
+            AI-Powered Career Navigation
           </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-            Find Your{" "}
+            Navigate Your{" "}
             <AnimatedText
-              text="Perfect Job"
+              text="Career Path"
               gradient={true}
               className="inline-block"
             />
-            {" "}with Intelligent Matching
+            {" "}to the Perfect Job
           </h1>
           <p className="mb-10 text-lg text-muted-foreground sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto">
-            Stop wasting time on irrelevant job listings. Job Pulse uses AI to analyze your skills, experience, and
-            preferences to find roles that truly match your profile.
+            Stop wandering through irrelevant listings. JobVector calculates your optimal career trajectory, analyzing your skills and goals to vector you toward roles that truly fit.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/personal-profile">
               <Button size="lg" variant="neon" className="h-12 px-8 text-base group">
-                Sign In
+                Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
@@ -104,7 +103,7 @@ export default function LandingPage() {
       {/* Features Section - How It Works */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How Job Pulse Works</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How JobVector Works</h2>
           <p className="text-lg text-muted-foreground">
             Three simple steps to find your dream job with data-driven insights
           </p>
@@ -118,7 +117,7 @@ export default function LandingPage() {
             </div>
             <h3 className="text-xl font-semibold mb-3">Create Your Personal Profile</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Share your skills, experience, salary expectations, ideal location, and the company values that matter to you. In just minutes, Job Pulse transforms this data into a precise professional fingerprint uniquely tailored to your goals.
+              Share your skills, experience, salary expectations, ideal location, and the company values that matter to you. In just minutes, JobVector transforms this data into a precise professional fingerprint uniquely tailored to your goals.
             </p>
           </GlassCard>
 
@@ -129,7 +128,7 @@ export default function LandingPage() {
             </div>
             <h3 className="text-xl font-semibold mb-3">Get Your AI-Driven Matches</h3>
             <p className="text-muted-foreground leading-relaxed">
-              No endless scrolling. No generic listings. Job Pulse scans thousands of opportunities and surfaces only the ones that align with your profile—ranked using intelligent criteria weighted by what matters most to you.
+              No endless scrolling. No generic listings. JobVector scans thousands of opportunities and surfaces only the ones that align with your profile—ranked using intelligent criteria weighted by what matters most to you.
             </p>
           </GlassCard>
 
@@ -152,10 +151,10 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-6">
-                What Makes Job Pulse Different
+                What Makes JobVector Different
               </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Stop applying to hundreds of jobs blindly. Job Pulse uses intelligent matching to spotlight the opportunities where you're most likely to succeed—so you can invest your time and energy where it truly counts.
+                Stop applying to hundreds of jobs blindly. JobVector uses intelligent matching to spotlight the opportunities where you're most likely to succeed—so you can invest your time and energy where it truly counts.
               </p>
               <ul className="space-y-4">
                 {[
@@ -240,9 +239,9 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <Link href="/" className="flex items-center gap-2 mb-4">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_0_15px_rgba(61,124,255,0.3)]">
-                  <Target className="h-5 w-5 text-primary-foreground" />
+                  <Waypoints className="h-5 w-5 text-primary-foreground" />
                 </div>
-                <span className="text-xl font-bold text-foreground">Job Pulse</span>
+                <span className="text-xl font-bold text-foreground">JobVector</span>
               </Link>
               <p className="text-sm text-muted-foreground max-w-sm">
                 AI-powered job matching platform that connects you with opportunities aligned with your career goals.
@@ -305,7 +304,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Job Pulse. All rights reserved.
+            &copy; {new Date().getFullYear()} JobVector. All rights reserved.
           </div>
         </div>
       </footer>

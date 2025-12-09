@@ -108,4 +108,35 @@ export function getCompletionPercent(progress: ProfileProgress): number {
 export function resetProgress(): void {
     if (typeof window === "undefined") return
     localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem("job-pulse-wizard-completed")
+    localStorage.removeItem("job-pulse-cv-upload-completed")
+}
+
+const WIZARD_COMPLETED_KEY = "job-pulse-wizard-completed"
+const CV_UPLOAD_COMPLETED_KEY = "job-pulse-cv-upload-completed"
+
+export function markWizardCompleted(): void {
+    if (typeof window !== "undefined") {
+        localStorage.setItem(WIZARD_COMPLETED_KEY, "true")
+    }
+}
+
+export function hasCompletedWizard(): boolean {
+    if (typeof window !== "undefined") {
+        return localStorage.getItem(WIZARD_COMPLETED_KEY) === "true"
+    }
+    return false
+}
+
+export function markCVUploadCompleted(): void {
+    if (typeof window !== "undefined") {
+        localStorage.setItem(CV_UPLOAD_COMPLETED_KEY, "true")
+    }
+}
+
+export function hasCompletedCVUpload(): boolean {
+    if (typeof window !== "undefined") {
+        return localStorage.getItem(CV_UPLOAD_COMPLETED_KEY) === "true"
+    }
+    return false
 }

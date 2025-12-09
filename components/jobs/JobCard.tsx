@@ -16,125 +16,120 @@ interface JobCardProps {
 export function JobCard({ job, matchScore }: JobCardProps) {
     const score = matchScore?.overall || 0
 
+    // Minimalistic score coloring - text only or subtle ring, no heavy shadows
     const getScoreColor = (s: number) => {
-        if (s >= 80) return "text-green-500 border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.3)]"
-        if (s >= 60) return "text-blue-500 border-blue-500/50 shadow-[0_0_10px_rgba(59,130,246,0.3)]"
-        return "text-orange-500 border-orange-500/50 shadow-[0_0_10px_rgba(249,115,22,0.3)]"
+        if (s >= 80) return "text-green-600 bg-green-500/10 border-green-200 dark:border-green-900"
+        if (s >= 60) return "text-blue-600 bg-blue-500/10 border-blue-200 dark:border-blue-900"
+        return "text-orange-600 bg-orange-500/10 border-orange-200 dark:border-orange-900"
     }
 
     return (
-        <GlassCard intensity="light" className="p-5 hover:bg-white/5 transition-all duration-300 group relative">
-            <div className="flex flex-col h-full justify-between">
-                <div>
-                    {/* Header */}
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                        <div className="flex items-start gap-3">
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold border border-primary/20">
-                                {job.company.substring(0, 2).toUpperCase()}
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
-                                    {job.title}
-                                </h3>
-                                <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
-                                    <Building2 className="w-3.5 h-3.5" />
-                                    {job.company}
-                                </div>
-                            </div>
+        <div className="group relative rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md hover:border-primary/20">
+            <div className="p-5 flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-start gap-4">
+                        {/* Company Logo - Simplified */}
+                        <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground font-semibold text-sm">
+                            {job.company.substring(0, 2).toUpperCase()}
                         </div>
 
-                        {/* Match Score Badge */}
-                        {matchScore && (
-                            <div className={`
-                flex flex-col items-center justify-center w-12 h-12 rounded-full border-2 
-                bg-background/50 backdrop-blur-sm ${getScoreColor(score)}
-              `}>
-                                <span className="text-sm font-bold">{score}%</span>
+                        <div>
+                            <h3 className="font-semibold text-base leading-tight text-foreground group-hover:text-primary transition-colors">
+                                {job.title}
+                            </h3>
+                            <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
+                                <Building2 className="w-3.5 h-3.5" />
+                                {job.company}
                             </div>
-                        )}
-                    </div>
-
-                    {/* Details */}
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground mb-4">
-                        <div className="flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5" />
-                            {job.location}
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5" />
-                            {job.workMode}
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <DollarSign className="w-3.5 h-3.5" />
-                            ${(job.salaryMin / 1000).toFixed(0)}k - ${(job.salaryMax / 1000).toFixed(0)}k
                         </div>
                     </div>
 
-                    {/* Skills (First 3) */}
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                        {job.requiredSkills.slice(0, 3).map((skill) => (
-                            <Badge key={skill} variant="secondary" className="text-xs font-normal">
-                                {skill}
-                            </Badge>
-                        ))}
-                        {job.requiredSkills.length > 3 && (
-                            <span className="text-xs text-muted-foreground self-center px-1">
-                                +{job.requiredSkills.length - 3}
-                            </span>
-                        )}
+                    {/* Match Score - Clean & Circular */}
+                    {matchScore && (
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-full border ${getScoreColor(score)}`}>
+                            <span className="text-xs font-bold">{score}%</span>
+                        </div>
+                    )}
+                </div>
+
+                {/* Tags / Meta - Cleaned up */}
+                <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground mb-4">
+                    <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {job.location}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {job.workMode}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <DollarSign className="w-3.5 h-3.5" />
+                        ${(job.salaryMin / 1000).toFixed(0)}k - ${(job.salaryMax / 1000).toFixed(0)}k
                     </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-2 mt-auto">
-                    <Link href={`/jobs/${job.id}`} className="flex-1">
-                        <Button className="w-full gap-2 group-hover:bg-primary/90 transition-colors">
-                            View Analysis
-                            <ArrowRight className="w-4 h-4" />
-                        </Button>
+                {/* Skills - Subtle Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+                    {job.requiredSkills.slice(0, 3).map((skill) => (
+                        <Badge key={skill} variant="secondary" className="px-2 py-0.5 text-[10px] font-medium bg-muted text-muted-foreground hover:bg-muted/80 border-transparent">
+                            {skill}
+                        </Badge>
+                    ))}
+                    {job.requiredSkills.length > 3 && (
+                        <span className="text-[10px] text-muted-foreground self-center px-1">
+                            +{job.requiredSkills.length - 3}
+                        </span>
+                    )}
+                </div>
+
+                {/* Action - Minimalistic Link */}
+                <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                    <span className="text-xs text-muted-foreground">Posted 2 days ago</span>
+                    <Link href={`/jobs/${job.id}`} className="text-sm font-medium text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
+                        View Details <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
-                    <Button variant="outline" size="icon">
-                        <Bookmark className="w-4 h-4" />
-                    </Button>
                 </div>
             </div>
-        </GlassCard>
+        </div>
     )
 }
 export function JobCardSkeleton() {
     return (
-        <GlassCard intensity="light" className="p-5">
-            <div className="flex flex-col h-full justify-between">
-                <div>
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                        <div className="flex items-start gap-3 w-full">
-                            <Skeleton className="w-12 h-12 rounded-xl" />
-                            <div className="space-y-2 flex-1">
-                                <Skeleton className="h-6 w-3/4" />
-                                <Skeleton className="h-4 w-1/2" />
-                            </div>
+        <div className="rounded-xl border border-border bg-card p-5">
+            <div className="flex flex-col h-full">
+                {/* Header Skeleton */}
+                <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-start gap-4">
+                        <Skeleton className="w-10 h-10 rounded-lg" />
+                        <div className="space-y-2">
+                            <Skeleton className="h-4 w-32" />
+                            <Skeleton className="h-3 w-24" />
                         </div>
-                        <Skeleton className="w-12 h-12 rounded-full" />
                     </div>
-
-                    <div className="flex gap-4 mb-4">
-                        <Skeleton className="h-4 w-20" />
-                        <Skeleton className="h-4 w-24" />
-                        <Skeleton className="h-4 w-16" />
-                    </div>
-
-                    <div className="flex gap-2 mb-6">
-                        <Skeleton className="h-6 w-16 rounded-full" />
-                        <Skeleton className="h-6 w-20 rounded-full" />
-                        <Skeleton className="h-6 w-12 rounded-full" />
-                    </div>
+                    <Skeleton className="w-10 h-10 rounded-full" />
                 </div>
 
-                <div className="flex gap-2 mt-auto">
-                    <Skeleton className="h-10 flex-1" />
-                    <Skeleton className="h-10 w-10" />
+                {/* Meta Skeleton */}
+                <div className="flex gap-4 mb-4">
+                    <Skeleton className="h-3 w-16" />
+                    <Skeleton className="h-3 w-16" />
+                    <Skeleton className="h-3 w-16" />
+                </div>
+
+                {/* Skills Skeleton */}
+                <div className="flex gap-2 mb-6 mt-auto">
+                    <Skeleton className="h-5 w-16 rounded-full" />
+                    <Skeleton className="h-5 w-16 rounded-full" />
+                    <Skeleton className="h-5 w-10 rounded-full" />
+                </div>
+
+                {/* Footer Skeleton */}
+                <div className="flex justify-between items-center pt-4 border-t border-border/50">
+                    <Skeleton className="h-3 w-20" />
+                    <Skeleton className="h-4 w-24" />
                 </div>
             </div>
-        </GlassCard>
+        </div>
     )
 }

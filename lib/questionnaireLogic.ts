@@ -30,6 +30,21 @@ export function clearQuestionnaireProgress(): void {
     }
 }
 
+const QUESTIONNAIRE_COMPLETED_KEY = "job-pulse-questionnaire-completed"
+
+export function markQuestionnaireCompleted(): void {
+    if (typeof window !== "undefined") {
+        localStorage.setItem(QUESTIONNAIRE_COMPLETED_KEY, "true")
+    }
+}
+
+export function hasCompletedQuestionnaire(): boolean {
+    if (typeof window !== "undefined") {
+        return localStorage.getItem(QUESTIONNAIRE_COMPLETED_KEY) === "true"
+    }
+    return false
+}
+
 export function generateProfileFromQuestionnaire(
     answers: QuestionnaireAnswers,
     name: string = "My Profile"

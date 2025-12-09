@@ -10,6 +10,7 @@ import {
     saveQuestionnaireProgress,
     loadQuestionnaireProgress,
     clearQuestionnaireProgress,
+    markQuestionnaireCompleted,
     generateProfileFromQuestionnaire,
     type QuestionnaireAnswers,
 } from "@/lib/questionnaireLogic"
@@ -71,6 +72,9 @@ export default function QuestionnaireBuilderPage() {
 
         // Clear questionnaire progress
         clearQuestionnaireProgress()
+
+        // Mark as permanently completed
+        markQuestionnaireCompleted()
 
         // Redirect to profile page
         router.push("/personal-profile")

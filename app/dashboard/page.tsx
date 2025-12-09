@@ -5,29 +5,20 @@ import { AppNav } from "@/components/app-nav"
 import { DashboardMetrics } from "@/components/dashboard/DashboardMetrics"
 import { RecentActivity } from "@/components/dashboard/RecentActivity"
 import { ProfileRadarChart } from "@/components/profile/ProfileRadarChart"
-import { ProfileDetails } from "@/components/profile/ProfileDetails"
-import { ProfileForm } from "@/components/profile/ProfileForm"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
-import { loadProfile, saveProfile } from "@/lib/storage"
+import { loadProfile } from "@/lib/storage"
 import { Profile } from "@/lib/types"
 
 export default function DashboardPage() {
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [isEditingProfile, setIsEditingProfile] = useState(false)
 
   useEffect(() => {
     setProfile(loadProfile())
   }, [])
-
-  const handleSaveProfile = (updatedProfile: Profile) => {
-    saveProfile(updatedProfile)
-    setProfile(updatedProfile)
-    setIsEditingProfile(false)
-  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,10 +41,10 @@ export default function DashboardPage() {
           </Link>
         </div>
 
+        {/* Simplied Tabs - We might even remove tabs if only 'Overview' remains, but keeping for future scalability 'Applications' etc */}
         <Tabs defaultValue="overview" className="space-y-8">
           <TabsList className="bg-secondary/10 border border-secondary/20">
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="profile">My Profile</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-8">
@@ -111,30 +102,6 @@ export default function DashboardPage() {
                 <RecentActivity />
               </div>
             </div>
-          </TabsContent>
-
-          <TabsContent value="profile">
-            {profile ? (
-              isEditingProfile ? (
-                <ProfileForm
-                  initialProfile={profile}
-                  onSave={handleSaveProfile}
-                  onCancel={() => setIsEditingProfile(false)}
-                />
-              ) : (
-                <ProfileDetails
-                  profile={profile}
-                  onEdit={() => setIsEditingProfile(true)}
-                />
-              )
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground mb-4">You haven't created a profile yet.</p>
-                <Link href="/personal-profile">
-                  <Button>Create Profile</Button>
-                </Link>
-              </div>
-            )}
           </TabsContent>
         </Tabs>
       </div>

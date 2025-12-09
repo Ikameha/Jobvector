@@ -28,7 +28,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 overflow-hidden">
+      <section className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 lg:pt-32 lg:pb-12 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" />
@@ -49,7 +49,7 @@ export default function LandingPage() {
             />
           </h1>
           <p className="mb-8 text-lg text-muted-foreground sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto">
-            JobVector's AI analyzes your profile against thousands of opportunities to surface only the roles where you'll thrive. Stop applying blindly. Start matching intelligently.
+            Stop applying blindly. Start matching intelligently. Your dream job is out there.
           </p>
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -59,11 +59,7 @@ export default function LandingPage() {
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
-              <Link href="/jobs">
-                <Button size="lg" variant="glass" className="h-12 px-8 text-base">
-                  Browse 500+ Jobs
-                </Button>
-              </Link>
+
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground/80">
               <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> No credit card required</span>
@@ -73,42 +69,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-
-
-      {/* Social Proof Stats */}
-      <section className="border-b border-border bg-muted/30 py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center">
-            <div>
-              <div className="text-3xl font-bold text-foreground">
-                <AnimatedCounter end={500} suffix="+" />
-              </div>
-              <div className="text-sm text-muted-foreground mt-1">Job Listings</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-foreground">
-                <AnimatedCounter end={5} />
-              </div>
-              <div className="text-sm text-muted-foreground mt-1">Match Criteria</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-foreground">
-                <AnimatedCounter end={95} suffix="%" />
-              </div>
-              <div className="text-sm text-muted-foreground mt-1">Match Accuracy</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-foreground">
-                <AnimatedCounter end={100} />
-              </div>
-              <div className="text-sm text-muted-foreground mt-1">Max Score</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Features Section - How It Works */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 lg:pt-12 lg:pb-32">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How JobVector Works</h2>
           <p className="text-lg text-muted-foreground">
@@ -118,9 +80,9 @@ export default function LandingPage() {
 
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {/* Feature 1 */}
-          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[0_0_20px_rgba(61,124,255,0.3)] group-hover:shadow-[0_0_30px_rgba(61,124,255,0.5)] transition-shadow">
-              <Rocket className="h-6 w-6" />
+          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-primary shadow-none group-hover:scale-110 transition-transform">
+              <Rocket className="h-10 w-10" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Create Your Personal Profile</h3>
             <p className="text-muted-foreground leading-relaxed">
@@ -129,9 +91,9 @@ export default function LandingPage() {
           </GlassCard>
 
           {/* Feature 2 */}
-          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-secondary-foreground shadow-[0_0_20px_rgba(0,225,255,0.3)] group-hover:shadow-[0_0_30px_rgba(0,225,255,0.5)] transition-shadow">
-              <BarChart3 className="h-6 w-6" />
+          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-secondary shadow-none group-hover:scale-110 transition-transform">
+              <BarChart3 className="h-10 w-10" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Get Your AI-Driven Matches</h3>
             <p className="text-muted-foreground leading-relaxed">
@@ -140,9 +102,9 @@ export default function LandingPage() {
           </GlassCard>
 
           {/* Feature 3 */}
-          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-chart-3 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)] group-hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] transition-shadow">
-              <TrendingUp className="h-6 w-6" />
+          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-chart-3 shadow-none group-hover:scale-110 transition-transform">
+              <TrendingUp className="h-10 w-10" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Analyze and Apply with Confidence</h3>
             <p className="text-muted-foreground leading-relaxed">

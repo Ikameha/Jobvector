@@ -26,7 +26,7 @@
 
   /* Muted: Soft Grey */
   --muted: #E8ECF2;
-  --muted-foreground: #64748B;
+  --muted-foreground: #000000;
 
   /* Accent: Subtle Glass Effect */
   --accent: rgba(61, 124, 255, 0.05);
@@ -90,7 +90,7 @@
 }
 
 @theme inline {
-  --font-sans: "Inter", "sans-serif";
+  --font-sans: var(--font-roboto), "Roboto", "ui-sans-serif", "system-ui", "sans-serif";
   --font-mono: "Geist Mono", "monospace";
 
   --color-background: var(--background);

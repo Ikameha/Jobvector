@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { saveProfile } from "@/lib/storage"
 import type { Profile, WorkMode } from "@/lib/types"
 import { CheckCircle2, MapPin, Heart, Code, Sparkles } from "lucide-react"
-import { markStepCompleted, addXp, unlockBadge } from "@/lib/profileProgress"
+import { markStepCompleted, addXp, unlockBadge, markWizardCompleted } from "@/lib/profileProgress"
 
 export default function SummaryPage() {
   const router = useRouter()
@@ -85,6 +85,9 @@ export default function SummaryPage() {
     if (summary.masteredSkills.length >= 3) {
       unlockBadge("skillful")
     }
+
+    // Mark wizard as permanently completed
+    markWizardCompleted()
 
     // Unlock completion badge
     unlockBadge("profile_complete")

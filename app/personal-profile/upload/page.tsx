@@ -9,6 +9,7 @@ import { mockExtractSkillsFromCV, type CVExtractionResult } from "@/lib/cvParser
 import { loadProfile, saveProfile } from "@/lib/storage"
 import { ArrowLeft, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
+import { markCVUploadCompleted } from "@/lib/profileProgress"
 
 export default function CVUploadPage() {
     const router = useRouter()
@@ -66,6 +67,7 @@ export default function CVUploadPage() {
         }
 
         saveProfile(updatedProfile)
+        markCVUploadCompleted()
         setIsComplete(true)
     }
 

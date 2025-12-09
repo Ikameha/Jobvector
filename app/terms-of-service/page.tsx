@@ -11,22 +11,22 @@ export default function TermsOfService() {
 
                     <h2 className="text-2xl font-semibold text-foreground">1. Introduction</h2>
                     <p>
-                        Welcome to JobVector. By accessing or using our website and services, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service.
+                        Welcome to Jobento. By accessing or using our website and services, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service.
                     </p>
 
                     <h2 className="text-2xl font-semibold text-foreground">2. Use of Service</h2>
                     <p>
-                        JobVector provides an AI-powered job matching platform. You agree to use the service only for lawful purposes and in accordance with these Terms. You are responsible for maintaining the confidentiality of your account credentials.
+                        Jobento provides an AI-powered job matching platform. You agree to use the service only for lawful purposes and in accordance with these Terms. You are responsible for maintaining the confidentiality of your account credentials.
                     </p>
 
                     <h2 className="text-2xl font-semibold text-foreground">3. User Data</h2>
                     <p>
-                        We collect and process your personal data as described in our Privacy Policy. By using JobVector, you consent to such processing and you warrant that all data provided by you is accurate.
+                        We collect and process your personal data as described in our Privacy Policy. By using Jobento, you consent to such processing and you warrant that all data provided by you is accurate.
                     </p>
 
                     <h2 className="text-2xl font-semibold text-foreground">4. Intellectual Property</h2>
                     <p>
-                        The service and its original content, features, and functionality are and will remain the exclusive property of JobVector and its licensors.
+                        The service and its original content, features, and functionality are and will remain the exclusive property of Jobento and its licensors.
                     </p>
 
                     <h2 className="text-2xl font-semibold text-foreground">5. Termination</h2>

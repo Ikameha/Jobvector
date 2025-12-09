@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
 
                     <h2 className="text-2xl font-semibold text-foreground">2. How We Use Your Information</h2>
                     <p>
-                        We use the information we collect to provide, maintain, and improve our services, including analyzing your profile to generate job matches and personalizing your experience on JobVector.
+                        We use the information we collect to provide, maintain, and improve our services, including analyzing your profile to generate job matches and personalizing your experience on Jobento.
                     </p>
 
                     <h2 className="text-2xl font-semibold text-foreground">3. Data Sharing</h2>

@@ -1,4 +1,4 @@
-// Core type definitions for JobVector
+// Core type definitions for Jobento
 
 export type ExperienceLevel = "entry" | "mid" | "senior" | "lead" | "executive"
 export type WorkMode = "remote" | "hybrid" | "onsite"

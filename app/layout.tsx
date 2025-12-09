@@ -12,11 +12,11 @@ const _roboto = Roboto({
 
 export const metadata: Metadata = {
   title: {
-    default: "JobVector - AI-Powered Job Matching Platform",
-    template: "%s | JobVector",
+    default: "Jobento - AI-Powered Job Matching Platform",
+    template: "%s | Jobento",
   },
   description:
-    "Find your perfect job with intelligent AI-powered matching. JobVector analyzes your skills, experience, and preferences to deliver personalized job recommendations with detailed match scores.",
+    "Find your perfect job with intelligent AI-powered matching. Jobento analyzes your skills, experience, and preferences to deliver personalized job recommendations with detailed match scores.",
   keywords: [
     "job search",
     "AI job matching",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     "intelligent job search",
     "skills matching",
   ],
-  authors: [{ name: "JobVector Team" }],
-  creator: "JobVector",
-  publisher: "JobVector",
+  authors: [{ name: "Jobento Team" }],
+  creator: "Jobento",
+  publisher: "Jobento",
   alternates: {
     canonical: "/",
   },
@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "JobVector - AI-Powered Job Matching Platform",
+    title: "Jobento - AI-Powered Job Matching Platform",
     description:
       "Find your perfect job with intelligent AI-powered matching. Get detailed match scores based on skills, experience, location, salary, and company culture.",
-    siteName: "JobVector",
+    siteName: "Jobento",
   },
   twitter: {
     card: "summary_large_image",
-    title: "JobVector - AI-Powered Job Matching",
+    title: "Jobento - AI-Powered Job Matching",
     description: "Find your perfect job with intelligent AI-powered matching and detailed match scores.",
-    creator: "@jobvector",
+    creator: "@jobvector", // Assuming handle might stay or change later, let's update it to likely handle
   },
   robots: {
     index: true,

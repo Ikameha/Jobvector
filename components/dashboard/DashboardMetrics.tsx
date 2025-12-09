@@ -12,7 +12,7 @@ export function DashboardMetrics() {
                     <Briefcase className="w-6 h-6 text-primary" />
                 </div>
                 <div className="text-3xl font-bold text-foreground mb-1">
-                    <AnimatedCounter value={12} />
+                    <AnimatedCounter end={12} />
                 </div>
                 <p className="text-sm text-muted-foreground">Applications Sent</p>
             </GlassCard>
@@ -22,7 +22,7 @@ export function DashboardMetrics() {
                     <CheckCircle2 className="w-6 h-6 text-secondary" />
                 </div>
                 <div className="text-3xl font-bold text-foreground mb-1">
-                    <AnimatedCounter value={3} />
+                    <AnimatedCounter end={3} />
                 </div>
                 <p className="text-sm text-muted-foreground">Interviews</p>
             </GlassCard>
@@ -32,7 +32,7 @@ export function DashboardMetrics() {
                     <Eye className="w-6 h-6 text-chart-3" />
                 </div>
                 <div className="text-3xl font-bold text-foreground mb-1">
-                    <AnimatedCounter value={45} />
+                    <AnimatedCounter end={45} />
                 </div>
                 <p className="text-sm text-muted-foreground">Profile Views</p>
             </GlassCard>
@@ -42,7 +42,7 @@ export function DashboardMetrics() {
                     <TrendingUp className="w-6 h-6 text-green-500" />
                 </div>
                 <div className="text-3xl font-bold text-foreground mb-1">
-                    <AnimatedCounter value={85} suffix="%" />
+                    <AnimatedCounter end={85} suffix="%" />
                 </div>
                 <p className="text-sm text-muted-foreground">Avg Match Score</p>
             </GlassCard>

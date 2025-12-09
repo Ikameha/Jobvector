@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light Mode - JobVector Clean */
+  /* Light Mode - Jobento Clean */
   --background: #FFFAFF;
   /* Snow */
   --foreground: #303036;
@@ -50,7 +50,7 @@
 }
 
 .dark {
-  /* Dark Mode - JobVector Premium */
+  /* Dark Mode - Jobento Premium */
   --background: #303036;
   /* Dark Gunmetal */
   --foreground: #FFFAFF;
@@ -132,6 +132,10 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased tracking-tight;
+    /* Professional Gradient Background (User Requested - Adjusted Visibility) */
+    background: linear-gradient(90deg, hsla(228, 17%, 53%, 0.5) 0%, hsla(229, 28%, 88%, 0.5) 100%),
+      var(--background);
+    background-attachment: fixed;
   }
 }
 

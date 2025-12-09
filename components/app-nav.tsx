@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Waypoints, User, Briefcase, LayoutDashboard, LogOut, Settings } from "lucide-react"
+import { LayoutGrid, User, Briefcase, LayoutDashboard, LogOut, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/lib/authContext"
 import {
@@ -31,9 +31,9 @@ export function AppNav() {
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-              <Waypoints className="h-5 w-5 text-primary" />
+              <LayoutGrid className="h-5 w-5 text-primary" />
             </div>
-            <span className="text-lg font-bold text-foreground tracking-tight">JobVector</span>
+            <span className="text-lg font-bold text-foreground tracking-tight">Jobento</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-4">

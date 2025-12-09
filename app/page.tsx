@@ -3,20 +3,20 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
-import { ArrowRight, Waypoints, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket, Target } from "lucide-react"
+import { ArrowRight, LayoutGrid, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket, Target } from "lucide-react"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_0_20px_rgba(61,124,255,0.4)]">
-                <Waypoints className="h-5 w-5 text-primary-foreground" />
+                <LayoutGrid className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-foreground">JobVector</span>
+              <span className="text-xl font-bold text-foreground">Jobento</span>
             </Link>
             <div className="flex items-center gap-4">
               <Link href="/personal-profile">
@@ -72,7 +72,7 @@ export default function LandingPage() {
       {/* Features Section - How It Works */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 lg:pt-12 lg:pb-32">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How JobVector Works</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How Jobento Works</h2>
           <p className="text-lg text-muted-foreground">
             Three simple steps to find your dream job with data-driven insights
           </p>
@@ -86,7 +86,7 @@ export default function LandingPage() {
             </div>
             <h3 className="text-xl font-semibold mb-3">Create Your Personal Profile</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Share your skills, experience, salary expectations, ideal location, and the company values that matter to you. In just minutes, JobVector transforms this data into a precise professional fingerprint uniquely tailored to your goals.
+              Share your skills, experience, salary expectations, ideal location, and the company values that matter to you. In just minutes, Jobento transforms this data into a precise professional fingerprint uniquely tailored to your goals.
             </p>
           </GlassCard>
 
@@ -97,7 +97,7 @@ export default function LandingPage() {
             </div>
             <h3 className="text-xl font-semibold mb-3">Get Your AI-Driven Matches</h3>
             <p className="text-muted-foreground leading-relaxed">
-              No endless scrolling. No generic listings. JobVector scans thousands of opportunities and surfaces only the ones that align with your profile—ranked using intelligent criteria weighted by what matters most to you.
+              No endless scrolling. No generic listings. Jobento scans thousands of opportunities and surfaces only the ones that align with your profile—ranked using intelligent criteria weighted by what matters most to you.
             </p>
           </GlassCard>
 
@@ -121,7 +121,7 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-primary/5 blur-3xl" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">See JobVector in Action</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">See Jobento in Action</h2>
             <p className="text-lg text-muted-foreground">
               Watch how our AI distills thousands of data points into your perfect match score.
             </p>
@@ -168,10 +168,10 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-6">
-                What Makes JobVector Different
+                What Makes Jobento Different
               </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Stop applying to hundreds of jobs blindly. JobVector uses intelligent matching to spotlight the opportunities where you're most likely to succeed—so you can invest your time and energy where it truly counts.
+                Stop applying to hundreds of jobs blindly. Jobento uses intelligent matching to spotlight the opportunities where you're most likely to succeed—so you can invest your time and energy where it truly counts.
               </p>
               <ul className="space-y-6">
                 {[
@@ -233,12 +233,12 @@ export default function LandingPage() {
       {/* Testimonials Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
         <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-16">
-          Success Stories from JobVector Users
+          Success Stories from Jobento Users
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              quote: "JobVector's matching algorithm found positions I never would have discovered on my own. I landed my current role in just 2 weeks!",
+              quote: "Jobento's matching algorithm found positions I never would have discovered on my own. I landed my current role in just 2 weeks!",
               author: "Sarah Chen",
               role: "Product Manager @ TechCorp",
               image: "SC",
@@ -289,7 +289,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Built for Every Career Stage</h2>
-            <p className="text-lg text-muted-foreground">Whether you're starting out or stepping up, JobVector adapts to your unique professional journey.</p>
+            <p className="text-lg text-muted-foreground">Whether you're starting out or stepping up, Jobento adapts to your unique professional journey.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -318,9 +318,9 @@ export default function LandingPage() {
           <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {[
-              { q: "How does the matching algorithm work?", a: "JobVector uses multi-dimensional analysis to compare your profile against job requirements. We evaluate skills alignment, experience level, location preferences, salary expectations, and cultural fit to generate a comprehensive match score." },
+              { q: "How does the matching algorithm work?", a: "Jobento uses multi-dimensional analysis to compare your profile against job requirements. We evaluate skills alignment, experience level, location preferences, salary expectations, and cultural fit to generate a comprehensive match score." },
               { q: "Is my data private and secure?", a: "Absolutely. Your data is encrypted, never shared with third parties without your consent, and you control what information employers see. We are GDPR compliant." },
-              { q: "Is JobVector free to use?", a: "Yes! Creating your profile and browsing matched opportunities is completely free. No credit card required." },
+              { q: "Is Jobento free to use?", a: "Yes! Creating your profile and browsing matched opportunities is completely free. No credit card required." },
               { q: "How accurate are the match scores?", a: "Our algorithm achieves 87% accuracy in predicting job fit based on user feedback. Scores above 80% indicate strong alignment." },
             ].map((faq, i) => (
               <GlassCard key={i} intensity="light" className="p-6">
@@ -365,9 +365,9 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <Link href="/" className="flex items-center gap-2 mb-4">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_0_15px_rgba(61,124,255,0.3)]">
-                  <Waypoints className="h-5 w-5 text-primary-foreground" />
+                  <LayoutGrid className="h-5 w-5 text-primary-foreground" />
                 </div>
-                <span className="text-xl font-bold text-foreground">JobVector</span>
+                <span className="text-xl font-bold text-foreground">Jobento</span>
               </Link>
               <p className="text-sm text-muted-foreground max-w-sm">
                 AI-powered job matching platform that connects you with opportunities aligned with your career goals.
@@ -434,7 +434,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} JobVector. All rights reserved.
+            &copy; {new Date().getFullYear()} Jobento. All rights reserved.
           </div>
         </div>
       </footer>

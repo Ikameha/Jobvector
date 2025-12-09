@@ -27,7 +27,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <AppNav />
 
       <div className="container max-w-4xl mx-auto px-4 py-8">

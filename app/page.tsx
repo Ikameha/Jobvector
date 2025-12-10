@@ -1,9 +1,10 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
-import { ArrowRight, LayoutGrid, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket, Target } from "lucide-react"
+import { ArrowRight, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket, Target } from "lucide-react"
 
 export default function LandingPage() {
   return (
@@ -12,11 +13,17 @@ export default function LandingPage() {
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_0_20px_rgba(61,124,255,0.4)]">
-                <LayoutGrid className="h-5 w-5 text-primary-foreground" />
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="flex h-14 w-14 items-center justify-center rounded-lg transition-transform group-hover:scale-105">
+                <Image
+                  src="/jobento-logo.png"
+                  alt="Jobento Logo"
+                  width={56}
+                  height={56}
+                  className="object-contain"
+                />
               </div>
-              <span className="text-xl font-bold text-foreground">Jobento</span>
+              <span className="text-2xl font-bold text-foreground">Jobento</span>
             </Link>
             <div className="flex items-center gap-4">
               <Link href="/personal-profile">
@@ -363,9 +370,15 @@ export default function LandingPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-2">
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_0_15px_rgba(61,124,255,0.3)]">
-                  <LayoutGrid className="h-5 w-5 text-primary-foreground" />
+              <Link href="/" className="flex items-center gap-2 mb-4 group">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg transition-transform group-hover:scale-105">
+                  <Image
+                    src="/jobento-logo.png"
+                    alt="Jobento Logo"
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                  />
                 </div>
                 <span className="text-xl font-bold text-foreground">Jobento</span>
               </Link>

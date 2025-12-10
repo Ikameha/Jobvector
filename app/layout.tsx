@@ -1,13 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Roboto } from "next/font/google"
+import { Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const _roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700", "900"],
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-roboto",
+  variable: "--font-montserrat",
 })
 
 export const metadata: Metadata = {
@@ -88,7 +87,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${_roboto.variable} font-sans antialiased`}>
+      <body className={`${montserrat.variable} font-sans antialiased`}>
         <AuthProvider>
           {children}
         </AuthProvider>

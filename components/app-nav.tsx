@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { LayoutGrid, User, Briefcase, LayoutDashboard, LogOut, Settings } from "lucide-react"
+import { User, Briefcase, LayoutDashboard, LogOut, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/lib/authContext"
 import {
@@ -30,10 +31,16 @@ export function AppNav() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-              <LayoutGrid className="h-5 w-5 text-primary" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg transition-transform group-hover:scale-105">
+              <Image
+                src="/jobento-logo.png"
+                alt="Jobento Logo"
+                width={48}
+                height={48}
+                className="object-contain"
+              />
             </div>
-            <span className="text-lg font-bold text-foreground tracking-tight">Jobento</span>
+            <span className="text-xl font-bold text-foreground tracking-tight ml-1">Jobento</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-4">

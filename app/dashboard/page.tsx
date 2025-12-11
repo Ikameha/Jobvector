@@ -8,27 +8,47 @@ import { ProfileRadarChart } from "@/components/profile/ProfileRadarChart"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles, Bookmark } from "lucide-react"
 import Link from "next/link"
-import { loadProfile } from "@/lib/storage"
-import { Profile } from "@/lib/types"
+import { loadProfile, getSavedJobIds } from "@/lib/storage"
+import { fetchJobs } from "@/lib/jobApi"
+import { Profile, Job } from "@/lib/types"
+import { JobCard } from "@/components/jobs/JobCard"
+import { EmptyState } from "@/components/ui/empty-state"
+import { PageTransition } from "@/components/ui/page-transition"
 
 export default function DashboardPage() {
   const [profile, setProfile] = useState<Profile | null>(null)
+  const [savedJobs, setSavedJobs] = useState<Job[]>([])
+  const [loadingSaved, setLoadingSaved] = useState(true)
+
+  const loadSavedJobs = async () => {
+    setLoadingSaved(true)
+    const savedIds = getSavedJobIds()
+    if (savedIds.length > 0) {
+      const allJobs = await fetchJobs() // In real app, we'd have a bulk fetch or by IDs
+      const filtered = allJobs.filter(j => savedIds.includes(j.id))
+      setSavedJobs(filtered)
+    } else {
+      setSavedJobs([])
+    }
+    setLoadingSaved(false)
+  }
 
   useEffect(() => {
     setProfile(loadProfile())
+    loadSavedJobs()
   }, [])
 
   return (
-    <div className="min-h-screen">
+    <PageTransition className="min-h-screen">
       <AppNav />
 
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Welcome back, {profile?.name.split(' ')[0] || 'Guest'}</h1>
+            <h1 className="text-3xl font-bold mb-2">Welcome back</h1>
             <p className="text-muted-foreground">
               Here's what's happening with your job search today.
             </p>
@@ -45,6 +65,7 @@ export default function DashboardPage() {
         <Tabs defaultValue="overview" className="space-y-8">
           <TabsList className="bg-secondary/10 border border-secondary/20">
             <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="saved">Saved Jobs ({savedJobs.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-8">
@@ -103,8 +124,33 @@ export default function DashboardPage() {
               </div>
             </div>
           </TabsContent>
+
+          <TabsContent value="saved">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {loadingSaved ? (
+                <div className="col-span-full text-center py-10">Loading saved jobs...</div>
+              ) : savedJobs.length > 0 ? (
+                savedJobs.map(job => (
+                  <JobCard key={job.id} job={job} onSaveToggle={loadSavedJobs} />
+                ))
+              ) : (
+                <div className="col-span-full">
+                  <EmptyState
+                    icon={Bookmark}
+                    title="No saved jobs yet"
+                    description="Jobs you save will appear here for easy access."
+                    action={
+                      <Link href="/jobs">
+                        <Button variant="neon" className="mt-4">Browse Jobs</Button>
+                      </Link>
+                    }
+                  />
+                </div>
+              )}
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </PageTransition>
   )
 }

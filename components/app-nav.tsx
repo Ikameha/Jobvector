@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { User, Briefcase, LayoutDashboard, LogOut, Settings } from "lucide-react"
+import { ChefHat, Fish, LayoutGrid, LogOut, Utensils } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/lib/authContext"
 import {
@@ -55,7 +55,7 @@ export function AppNav() {
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary/10"
                 )}
               >
-                <Briefcase className="h-4 w-4" />
+                <Fish className="h-4 w-4" />
                 Browse Jobs
               </Button>
             </Link>
@@ -73,7 +73,7 @@ export function AppNav() {
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary/10"
                     )}
                   >
-                    <LayoutDashboard className="h-4 w-4" />
+                    <LayoutGrid className="h-4 w-4" />
                     Dashboard
                   </Button>
                 </Link>
@@ -83,7 +83,9 @@ export function AppNav() {
                     <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                       <Avatar className="h-9 w-9 border border-border">
                         <AvatarImage src="/placeholder-user.jpg" alt="User" />
-                        <AvatarFallback>U</AvatarFallback>
+                        <AvatarFallback>
+                          <ChefHat className="h-4 w-4" />
+                        </AvatarFallback>
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
@@ -97,13 +99,13 @@ export function AppNav() {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
                       <Link href="/personal-profile" className="cursor-pointer">
-                        <User className="mr-2 h-4 w-4" />
+                        <ChefHat className="mr-2 h-4 w-4" />
                         My Profile
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link href="/settings" className="cursor-pointer">
-                        <Settings className="mr-2 h-4 w-4" />
+                        <Utensils className="mr-2 h-4 w-4" />
                         Settings
                       </Link>
                     </DropdownMenuItem>
@@ -126,19 +128,19 @@ export function AppNav() {
           <div className="flex md:hidden items-center gap-2">
             <Link href="/jobs">
               <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground">
-                <Briefcase className="h-5 w-5" />
+                <Fish className="h-5 w-5" />
               </Button>
             </Link>
 
             {isAuthenticated ? (
               <Link href="/dashboard">
                 <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground">
-                  <User className="h-5 w-5" />
+                  <ChefHat className="h-5 w-5" />
                 </Button>
               </Link>
             ) : (
               <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground" onClick={signIn}>
-                <User className="h-5 w-5" />
+                <ChefHat className="h-5 w-5" />
               </Button>
             )}
           </div>

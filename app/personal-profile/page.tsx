@@ -10,6 +10,7 @@ import { Profile } from "@/lib/types"
 import { ProfileDetails } from "@/components/profile/ProfileDetails"
 import { ProfileForm } from "@/components/profile/ProfileForm"
 import { ProfileProgressComponent } from "@/components/profile/ProfileProgress"
+import { PageTransition } from "@/components/ui/page-transition"
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null)
@@ -27,7 +28,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <PageTransition className="min-h-screen">
       <AppNav />
 
       <div className="container max-w-4xl mx-auto px-4 py-8">
@@ -92,6 +93,6 @@ export default function ProfilePage() {
           </div>
         )}
       </div>
-    </div>
+    </PageTransition>
   )
 }

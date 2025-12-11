@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
-import { ArrowRight, BarChart3, Sparkles, CheckCircle2, Users, TrendingUp, Zap, Shield, Rocket, Target } from "lucide-react"
+import { PageTransition } from "@/components/ui/page-transition"
+import { ArrowRight, Sparkles, CheckCircle2, TrendingUp, ChefHat, UtensilsCrossed, Fish, Utensils, LayoutGrid, Sprout, Soup, Croissant } from "lucide-react"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen">
+    <PageTransition className="min-h-screen">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +90,7 @@ export default function LandingPage() {
           {/* Feature 1 */}
           <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-primary shadow-none group-hover:scale-110 transition-transform">
-              <Rocket className="h-10 w-10" />
+              <ChefHat className="h-10 w-10" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Create Your Personal Profile</h3>
             <p className="text-muted-foreground leading-relaxed">
@@ -100,7 +101,7 @@ export default function LandingPage() {
           {/* Feature 2 */}
           <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-secondary shadow-none group-hover:scale-110 transition-transform">
-              <BarChart3 className="h-10 w-10" />
+              <UtensilsCrossed className="h-10 w-10" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Get Your AI-Driven Matches</h3>
             <p className="text-muted-foreground leading-relaxed">
@@ -110,12 +111,12 @@ export default function LandingPage() {
 
           {/* Feature 3 */}
           <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-chart-3 shadow-none group-hover:scale-110 transition-transform">
-              <TrendingUp className="h-10 w-10" />
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-accent-foreground shadow-none group-hover:scale-110 transition-transform">
+              <Fish className="h-10 w-10" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Analyze and Apply with Confidence</h3>
+            <h3 className="text-xl font-semibold mb-3">Apply with Confidence</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Review detailed breakdowns of each match score with crystal-clear explanations: Why do you fit this role? Where do you stand out? Where's room to grow? Save opportunities, compare them side-by-side, and apply when it feels right. All with complete confidence.
+              Target the roles where you're a top candidate. Jobento provides deep matching insights so you know exactly why you're a good fit, helping you tailor your application and land the interview.
             </p>
           </GlassCard>
         </div>
@@ -182,9 +183,9 @@ export default function LandingPage() {
               </p>
               <ul className="space-y-6">
                 {[
-                  { icon: Zap, title: "Data-Driven, Not Guesswork", text: "Match scores with transparent explanations—know exactly why a job fits you." },
-                  { icon: Target, title: "Multi-Dimensional Analysis", text: "We weigh skills, experience, location, salary, and culture to find your perfect fit." },
-                  { icon: Shield, title: "Your Career Command Center", text: "Organize, track, and manage your applications in one intuitive dashboard." },
+                  { icon: Utensils, title: "Data-Driven, Not Guesswork", text: "Match scores with transparent explanations—know exactly why a job fits you." },
+                  { icon: LayoutGrid, title: "Multi-Dimensional Analysis", text: "We weigh skills, experience, location, salary, and culture to find your perfect fit." },
+                  { icon: ChefHat, title: "Your Career Command Center", text: "Organize, track, and manage your applications in one intuitive dashboard." },
                 ].map((benefit, idx) => (
                   <li key={idx} className="flex items-start gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
@@ -233,12 +234,12 @@ export default function LandingPage() {
                 </div>
               </GlassCard>
             </div>
-          </div>
-        </div>
-      </section>
+          </div >
+        </div >
+      </section >
 
       {/* Testimonials Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      < section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32" >
         <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-16">
           Success Stories from Jobento Users
         </h2>
@@ -287,12 +288,12 @@ export default function LandingPage() {
             </GlassCard>
           ))}
         </div>
-      </section>
+      </section >
 
 
 
       {/* Who It Is For Section */}
-      <section className="border-y border-border bg-muted/20 py-20 lg:py-32">
+      < section className="border-y border-border bg-muted/20 py-20 lg:py-32" >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Built for Every Career Stage</h2>
@@ -301,26 +302,32 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <GlassCard className="p-8 text-center" intensity="light">
-              <div className="mx-auto h-14 w-14 rounded-full bg-blue-500/10 flex items-center justify-center text-3xl mb-6">🎓</div>
+              <div className="mx-auto h-14 w-14 rounded-full bg-chart-5/10 flex items-center justify-center mb-6">
+                <Sprout className="h-8 w-8 text-chart-5" />
+              </div>
               <h3 className="text-xl font-bold mb-3">Recent Graduates</h3>
               <p className="text-muted-foreground">Find entry-level roles that value your fresh perspective and transferable skills, not just years of experience.</p>
             </GlassCard>
             <GlassCard className="p-8 text-center" intensity="light">
-              <div className="mx-auto h-14 w-14 rounded-full bg-purple-500/10 flex items-center justify-center text-3xl mb-6">🔄</div>
+              <div className="mx-auto h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                <Soup className="h-8 w-8 text-primary" />
+              </div>
               <h3 className="text-xl font-bold mb-3">Career Changers</h3>
               <p className="text-muted-foreground">Discover opportunities where your unique background becomes your competitive advantage.</p>
             </GlassCard>
             <GlassCard className="p-8 text-center" intensity="light">
-              <div className="mx-auto h-14 w-14 rounded-full bg-emerald-500/10 flex items-center justify-center text-3xl mb-6">📈</div>
+              <div className="mx-auto h-14 w-14 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
+                <Croissant className="h-8 w-8 text-secondary" />
+              </div>
               <h3 className="text-xl font-bold mb-3">Senior Professionals</h3>
               <p className="text-muted-foreground">Connect with companies seeking your specific expertise and leadership experience.</p>
             </GlassCard>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* FAQ Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      < section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32" >
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6">
@@ -337,12 +344,19 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 border-t border-border">
+      < section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 border-t border-border" >
         <div className="mx-auto max-w-3xl text-center">
-          <Users className="mx-auto h-12 w-12 text-primary mb-6" />
+          <div className="mx-auto h-16 w-16 mb-6 relative">
+            <Image
+              src="/jobento-logo.png"
+              alt="Jobento Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-6">
             Ready to Find Your Perfect Match?
           </h2>
@@ -358,15 +372,15 @@ export default function LandingPage() {
               </Button>
             </Link>
             <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              <span className="flex items-center gap-1.5"><Shield className="h-3 w-3" /> Bank-level Encryption</span>
+              <span className="flex items-center gap-1.5"><ChefHat className="h-3 w-3" /> Bank-level Encryption</span>
               <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3 w-3" /> GDPR Compliant</span>
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Footer */}
-      <footer className="border-t border-border bg-muted/30">
+      < footer className="border-t border-border bg-muted/30" >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-2">
@@ -450,7 +464,7 @@ export default function LandingPage() {
             &copy; {new Date().getFullYear()} Jobento. All rights reserved.
           </div>
         </div>
-      </footer>
-    </div >
+      </footer >
+    </PageTransition >
   )
 }

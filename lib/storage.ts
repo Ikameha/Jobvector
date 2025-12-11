@@ -54,7 +54,42 @@ export function deleteJobAnalysis(analysisId: string): void {
   localStorage.setItem(ANALYSES_KEY, JSON.stringify(filtered))
 }
 
+
+// Saved Jobs operations
+const SAVED_JOBS_KEY = "jobpulse_saved_jobs"
+
+export function getSavedJobIds(): string[] {
+  if (typeof window === 'undefined') return []
+  const data = localStorage.getItem(SAVED_JOBS_KEY)
+  return data ? JSON.parse(data) : []
+}
+
+export function isJobSaved(jobId: string): boolean {
+  if (typeof window === 'undefined') return false
+  const savedIds = getSavedJobIds()
+  return savedIds.includes(jobId)
+}
+
+export function toggleSavedJob(jobId: string): boolean {
+  if (typeof window === 'undefined') return false
+  const savedIds = getSavedJobIds()
+  const index = savedIds.indexOf(jobId)
+  let isSaved = false
+
+  if (index >= 0) {
+    savedIds.splice(index, 1)
+    isSaved = false
+  } else {
+    savedIds.push(jobId)
+    isSaved = true
+  }
+
+  localStorage.setItem(SAVED_JOBS_KEY, JSON.stringify(savedIds))
+  return isSaved
+}
+
 export function clearAllData(): void {
   deleteProfile()
   localStorage.removeItem(ANALYSES_KEY)
+  localStorage.removeItem(SAVED_JOBS_KEY)
 }

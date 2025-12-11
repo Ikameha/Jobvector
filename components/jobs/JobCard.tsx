@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Job, MatchScore } from "@/lib/types"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
@@ -7,14 +8,32 @@ import { Badge } from "@/components/ui/badge"
 import { Building2, MapPin, DollarSign, Clock, ArrowRight, Bookmark } from "lucide-react"
 import Link from "next/link"
 import { Skeleton } from "@/components/ui/skeleton"
+import { isJobSaved, toggleSavedJob } from "@/lib/storage"
+import { cn } from "@/lib/utils"
 
 interface JobCardProps {
     job: Job
     matchScore?: MatchScore
+    onSaveToggle?: () => void
 }
 
-export function JobCard({ job, matchScore }: JobCardProps) {
+export function JobCard({ job, matchScore, onSaveToggle }: JobCardProps) {
     const score = matchScore?.overall || 0
+    const [saved, setSaved] = useState(false)
+
+    useEffect(() => {
+        setSaved(isJobSaved(job.id))
+    }, [job.id])
+
+    const handleSave = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        const newState = toggleSavedJob(job.id)
+        setSaved(newState)
+        if (onSaveToggle) {
+            onSaveToggle()
+        }
+    }
 
     // Minimalistic score coloring - text only or subtle ring, no heavy shadows
     const getScoreColor = (s: number) => {
@@ -25,9 +44,10 @@ export function JobCard({ job, matchScore }: JobCardProps) {
 
     return (
         <div className="group relative rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md hover:border-primary/20">
-            <div className="p-5 flex flex-col h-full">
+            <Link href={`/jobs/${job.id}`} className="absolute inset-0 z-0" aria-label={`View details for ${job.title}`} />
+            <div className="p-5 flex flex-col h-full relative z-10 pointer-events-none">
                 {/* Header */}
-                <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="flex items-start justify-between gap-4 mb-4 pointer-events-auto">
                     <div className="flex items-start gap-4">
                         {/* Company Logo - Simplified */}
                         <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground font-semibold text-sm">
@@ -45,12 +65,27 @@ export function JobCard({ job, matchScore }: JobCardProps) {
                         </div>
                     </div>
 
-                    {/* Match Score - Clean & Circular */}
-                    {matchScore && (
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-full border ${getScoreColor(score)}`}>
-                            <span className="text-xs font-bold">{score}%</span>
-                        </div>
-                    )}
+                    <div className="flex items-center gap-3">
+                        {/* Save Button */}
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className={cn(
+                                "h-8 w-8 hover:bg-primary/10 transition-colors",
+                                saved ? "text-primary" : "text-muted-foreground"
+                            )}
+                            onClick={handleSave}
+                        >
+                            <Bookmark className={cn("w-4 h-4", saved && "fill-current")} />
+                        </Button>
+
+                        {/* Match Score - Clean & Circular */}
+                        {matchScore && (
+                            <div className={`flex items-center justify-center w-10 h-10 rounded-full border ${getScoreColor(score)}`}>
+                                <span className="text-xs font-bold">{score}%</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Tags / Meta - Cleaned up */}
@@ -70,7 +105,7 @@ export function JobCard({ job, matchScore }: JobCardProps) {
                 </div>
 
                 {/* Skills - Subtle Badges */}
-                <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+                <div className="flex flex-wrap gap-1.5 mb-5 mt-auto pointer-events-auto">
                     {job.requiredSkills.slice(0, 3).map((skill) => (
                         <Badge key={skill} variant="secondary" className="px-2 py-0.5 text-[10px] font-medium bg-muted text-muted-foreground hover:bg-muted/80 border-transparent">
                             {skill}
@@ -84,7 +119,7 @@ export function JobCard({ job, matchScore }: JobCardProps) {
                 </div>
 
                 {/* Action - Minimalistic Link */}
-                <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                <div className="flex items-center justify-between pt-4 border-t border-border/50 pointer-events-auto">
                     <span className="text-xs text-muted-foreground">Posted 2 days ago</span>
                     <Link href={`/jobs/${job.id}`} className="text-sm font-medium text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
                         View Details <ArrowRight className="w-3.5 h-3.5" />

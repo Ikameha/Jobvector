@@ -4,13 +4,16 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import type { Job, Profile, JobAnalysis, MatchScore, MatchExplanation } from "@/lib/types"
 import { fetchJobById } from "@/lib/jobApi"
-import { loadProfile, saveJobAnalysis, loadJobAnalyses } from "@/lib/storage"
+import { loadProfile, isJobSaved, toggleSavedJob } from "@/lib/storage"
 import { calculateMatchScore, generateMatchExplanation } from "@/lib/matchingEngine"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { GlassCard } from "@/components/ui/glass-card"
+import { PageTransition } from "@/components/ui/page-transition"
+import { AnimatedCounter } from "@/components/ui/animated-counter"
+import { motion } from "framer-motion"
 import {
   ArrowLeft,
   Building2,
@@ -65,9 +68,7 @@ export default function JobDetail({ jobId }: JobDetailProps) {
       setMatchExplanation(explanation)
 
       // Check if already saved
-      const analyses = loadJobAnalyses()
-      const existing = analyses.find((a) => a.jobId === jobId)
-      setIsSaved(!!existing)
+      setIsSaved(isJobSaved(jobId))
 
       setIsLoading(false)
     }
@@ -75,23 +76,10 @@ export default function JobDetail({ jobId }: JobDetailProps) {
     loadData()
   }, [jobId, router])
 
-  const handleSaveAnalysis = () => {
-    if (!job || !profile || !matchScore || !matchExplanation) return
-
-    const analysis: JobAnalysis = {
-      id: `analysis-${Date.now()}`,
-      profileId: profile.id,
-      jobId: job.id,
-      job: job,
-      matchScore,
-      matchExplanation,
-      analyzedAt: new Date().toISOString(),
-      status: "saved",
-      updatedAt: new Date().toISOString(),
-    }
-
-    saveJobAnalysis(analysis)
-    setIsSaved(true)
+  const handleToggleSave = () => {
+    if (!job) return
+    const newState = toggleSavedJob(job.id)
+    setIsSaved(newState)
   }
 
   const getScoreColor = (score: number) => {
@@ -135,8 +123,10 @@ export default function JobDetail({ jobId }: JobDetailProps) {
     !profile.skills.some(ps => ps.toLowerCase() === skill.toLowerCase())
   )
 
+  // ... inside render
+
   return (
-    <div className="container max-w-5xl mx-auto py-8 px-4">
+    <PageTransition className="container max-w-5xl mx-auto py-8 px-4">
       {/* Navigation & Header */}
       <div className="flex items-center gap-3 mb-6">
         <Button variant="ghost" size="icon" onClick={() => router.push("/jobs")}>
@@ -146,9 +136,9 @@ export default function JobDetail({ jobId }: JobDetailProps) {
           <h1 className="text-2xl font-bold tracking-tight">Match Analysis</h1>
           <p className="text-muted-foreground text-sm">AI-driven insights for your compatibility</p>
         </div>
-        <Button onClick={handleSaveAnalysis} disabled={isSaved} variant={isSaved ? "outline" : "neon"}>
+        <Button onClick={handleToggleSave} variant={isSaved ? "outline" : "neon"}>
           <Heart className={`w-4 h-4 mr-2 ${isSaved ? "fill-current" : ""}`} />
-          {isSaved ? "Saved to Library" : "Save Job"}
+          {isSaved ? "Saved" : "Save Job"}
         </Button>
       </div>
 
@@ -180,9 +170,14 @@ export default function JobDetail({ jobId }: JobDetailProps) {
                 </div>
               </div>
               <div className="flex flex-col items-center">
-                <div className={`relative flex items-center justify-center w-20 h-20 rounded-full border-4 text-2xl font-bold bg-background/50 backdrop-blur-sm ${getScoreColor(matchScore.overall)}`}>
-                  {matchScore.overall}%
-                </div>
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className={`relative flex items-center justify-center w-20 h-20 rounded-full border-4 text-2xl font-bold bg-background/50 backdrop-blur-sm ${getScoreColor(matchScore.overall)}`}
+                >
+                  <AnimatedCounter end={matchScore.overall} suffix="%" />
+                </motion.div>
                 <span className="text-xs font-semibold mt-1">Match Score</span>
               </div>
             </div>
@@ -195,9 +190,16 @@ export default function JobDetail({ jobId }: JobDetailProps) {
               Detailed Breakdown
             </h3>
 
-            <div className="space-y-6">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.1 } }
+              }}
+              className="space-y-6"
+            >
               {/* Skills Fit */}
-              <div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="font-medium flex items-center gap-2">
                     {getScoreIcon(matchScore.skillsFit)} Skills Compatibility
@@ -206,10 +208,10 @@ export default function JobDetail({ jobId }: JobDetailProps) {
                 </div>
                 <Progress value={matchScore.skillsFit} className="h-2 mb-2" />
                 <p className="text-sm text-muted-foreground">{matchExplanation.skillsFit}</p>
-              </div>
+              </motion.div>
 
               {/* Experience Fit */}
-              <div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="font-medium flex items-center gap-2">
                     {getScoreIcon(matchScore.experienceFit)} Experience Level
@@ -218,10 +220,10 @@ export default function JobDetail({ jobId }: JobDetailProps) {
                 </div>
                 <Progress value={matchScore.experienceFit} className="h-2 mb-2" />
                 <p className="text-sm text-muted-foreground">{matchExplanation.experienceFit}</p>
-              </div>
+              </motion.div>
 
               {/* Location & Work Mode */}
-              <div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="font-medium flex items-center gap-2">
                     {getScoreIcon(matchScore.locationFit)} Location & Work Mode
@@ -230,8 +232,8 @@ export default function JobDetail({ jobId }: JobDetailProps) {
                 </div>
                 <Progress value={matchScore.locationFit} className="h-2 mb-2" />
                 <p className="text-sm text-muted-foreground">{matchExplanation.locationFit}</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </GlassCard>
 
           {/* Job Description */}
@@ -302,6 +304,6 @@ export default function JobDetail({ jobId }: JobDetailProps) {
           </GlassCard>
         </div>
       </div>
-    </div>
+    </PageTransition>
   )
 }

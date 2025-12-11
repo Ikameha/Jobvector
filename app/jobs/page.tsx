@@ -13,6 +13,7 @@ import { ProfileRadarChart } from "@/components/profile/ProfileRadarChart"
 import { EmptyState } from "@/components/ui/empty-state"
 import { SearchX } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { PageTransition } from "@/components/ui/page-transition"
 
 interface JobWithScore extends Job {
   matchScore?: MatchScore
@@ -92,7 +93,7 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <PageTransition className="min-h-screen">
       <AppNav />
 
       <div className="container mx-auto px-4 py-8">
@@ -154,6 +155,6 @@ export default function JobsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageTransition>
   )
 }

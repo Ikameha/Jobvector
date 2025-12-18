@@ -1,11 +1,11 @@
-"use client"
-
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
 
 interface JobFiltersProps {
     searchQuery: string
@@ -15,6 +15,10 @@ interface JobFiltersProps {
     selectedWorkModes: string[]
     onWorkModeChange: (mode: string) => void
     onClearFilters: () => void
+    sortBy: "match" | "date"
+    onSortChange: (value: "match" | "date") => void
+    showUrgent: boolean
+    onUrgentChange: (value: boolean) => void
 }
 
 export function JobFilters({
@@ -24,7 +28,11 @@ export function JobFilters({
     onSalaryChange,
     selectedWorkModes,
     onWorkModeChange,
-    onClearFilters
+    onClearFilters,
+    sortBy,
+    onSortChange,
+    showUrgent,
+    onUrgentChange
 }: JobFiltersProps) {
     return (
         <div className="space-y-6">
@@ -45,6 +53,30 @@ export function JobFilters({
                     <Button variant="ghost" size="sm" onClick={onClearFilters} className="h-auto p-0 text-muted-foreground hover:text-foreground">
                         Reset
                     </Button>
+                </div>
+
+                {/* Sort Order */}
+                <div className="space-y-3">
+                    <Label className="text-xs uppercase text-muted-foreground font-semibold">Sort By</Label>
+                    <Select value={sortBy} onValueChange={(val) => onSortChange(val as "match" | "date")}>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Sort order" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="match">Best Match</SelectItem>
+                            <SelectItem value="date">Newest First</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                {/* Urgent Toggle */}
+                <div className="flex items-center justify-between py-2">
+                    <Label htmlFor="urgent-mode" className="text-sm font-medium cursor-pointer">Urgent / New</Label>
+                    <Switch
+                        id="urgent-mode"
+                        checked={showUrgent}
+                        onCheckedChange={onUrgentChange}
+                    />
                 </div>
 
                 {/* Work Mode */}

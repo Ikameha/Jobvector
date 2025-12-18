@@ -87,7 +87,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} font-sans antialiased`}>
+      <body className={`${montserrat.variable} font-sans antialiased relative`}>
+        {/* Stable Fixed Background Layer to prevent glitches */}
+        <div className="fixed inset-0 -z-50 bg-[linear-gradient(135deg,hsl(225,45%,93%)_0%,hsl(250,40%,93%)_100%)] dark:bg-[linear-gradient(135deg,hsl(225,30%,10%)_0%,hsl(240,30%,8%)_100%)]" />
+
         <AuthProvider>
           {children}
         </AuthProvider>

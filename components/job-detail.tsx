@@ -14,6 +14,8 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { PageTransition } from "@/components/ui/page-transition"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { motion } from "framer-motion"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import { generateCoverLetter } from "@/lib/aiGenerator"
 import {
   ArrowLeft,
   Building2,
@@ -27,7 +29,10 @@ import {
   AlertCircle,
   Info,
   XCircle,
-  Sparkles
+  Sparkles,
+  PenTool,
+  Copy,
+  Check
 } from "lucide-react"
 
 interface JobDetailProps {
@@ -42,6 +47,29 @@ export default function JobDetail({ jobId }: JobDetailProps) {
   const [matchExplanation, setMatchExplanation] = useState<MatchExplanation | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaved, setIsSaved] = useState(false)
+  const [generating, setGenerating] = useState(false)
+  const [letter, setLetter] = useState<string | null>(null)
+  const [showDialog, setShowDialog] = useState(false)
+  const [copied, setCopied] = useState(false)
+
+  const handleGenerate = async () => {
+    if (!job || !profile) return
+    setGenerating(true)
+    try {
+      const generated = await generateCoverLetter(job, profile)
+      setLetter(generated)
+      setShowDialog(true)
+    } finally {
+      setGenerating(false)
+    }
+  }
+
+  const handleCopy = () => {
+    if (!letter) return
+    navigator.clipboard.writeText(letter)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -296,6 +324,37 @@ export default function JobDetail({ jobId }: JobDetailProps) {
             </div>
           </GlassCard>
 
+          {/* Application Assistant */}
+          <GlassCard intensity="medium" className="p-6 border-l-4 border-l-purple-500 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-3 opacity-10">
+              <PenTool className="w-24 h-24 text-purple-500" />
+            </div>
+            <h3 className="font-semibold mb-2 flex items-center gap-2 relative z-10">
+              <Sparkles className="w-5 h-5 text-purple-500" />
+              AI Application Assistant
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4 relative z-10">
+              Generate a custom, Bento-structured cover letter tailored to this role.
+            </p>
+            <Button
+              className="w-full relative z-10 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0"
+              onClick={handleGenerate}
+              disabled={generating}
+            >
+              {generating ? (
+                <>
+                  <Sparkles className="w-4 h-4 mr-2 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <PenTool className="w-4 h-4 mr-2" />
+                  Generate Cover Letter
+                </>
+              )}
+            </Button>
+          </GlassCard>
+
           {/* Action */}
           <GlassCard intensity="light" className="p-6 text-center">
             <h3 className="font-semibold mb-2">Ready to Apply?</h3>
@@ -304,6 +363,31 @@ export default function JobDetail({ jobId }: JobDetailProps) {
           </GlassCard>
         </div>
       </div>
+
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <PenTool className="w-5 h-5 text-purple-500" />
+              Your Custom Bento-Cover Letter
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="bg-muted/30 p-6 rounded-xl border border-border/50 font-serif text-sm leading-relaxed whitespace-pre-wrap">
+            {letter?.split('**').map((part, index) =>
+              index % 2 === 1 ? <strong key={index} className="font-bold text-foreground">{part}</strong> : part
+            )}
+          </div>
+
+          <DialogFooter className="gap-2 sm:justify-end">
+            <Button variant="outline" onClick={() => setShowDialog(false)}>Close</Button>
+            <Button onClick={handleCopy} className="gap-2">
+              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              {copied ? "Copied!" : "Copy to Clipboard"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </PageTransition>
   )
 }

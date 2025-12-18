@@ -4,92 +4,91 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light Mode - Jobento Bento Theme */
-  --background: 40 50% 98%;
-  /* Cream/Rice */
-  --foreground: 215 30% 25%;
-  /* Dark Slate Blue */
+  /* Light Mode - Jobento New Blue/Purple Theme */
+  --background: 220 50% 98%;
+  /* Very light blue tint */
+  --foreground: 225 30% 15%;
+  /* Dark Blue-Gray */
 
   --card: 0 0% 100%;
-  --card-foreground: 215 30% 25%;
+  --card-foreground: 225 30% 15%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 215 30% 25%;
+  --popover-foreground: 225 30% 15%;
 
-  --primary: 25 95% 58%;
-  /* Vibrant Salmon Orange */
+  --primary: 225 75% 55%;
+  /* Royal Blue */
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 175 70% 40%;
-  /* Fresh Bento Teal */
-  --secondary-foreground: 0 0% 100%;
+  --secondary: 260 70% 65%;
+  /* Soft Purple */
+  --secondary-foreground: 260 30% 15%;
 
-  --muted: 215 20% 96%;
-  --muted-foreground: 215 20% 45%;
+  --muted: 220 20% 96%;
+  --muted-foreground: 220 20% 45%;
 
-  --accent: 45 90% 60%;
-  /* Soft Yellow Highlight */
-  --accent-foreground: 215 30% 20%;
+  --accent: 190 90% 50%;
+  /* Cyan Highlight */
+  --accent-foreground: 225 30% 15%;
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 215 20% 90%;
-  --input: 215 20% 90%;
-  --ring: 25 95% 58%;
+  --border: 220 20% 90%;
+  --input: 220 20% 90%;
+  --ring: 225 75% 55%;
 
   --radius: 0.75rem;
 
-  --chart-1: 25 95% 58%;
-  /* Orange */
-  --chart-2: 175 70% 40%;
-  /* Teal */
-  --chart-3: 45 90% 60%;
-  /* Yellow */
-  --chart-4: 215 30% 25%;
+  --chart-1: 225 75% 55%;
+  /* Blue */
+  --chart-2: 260 70% 65%;
+  /* Purple */
+  --chart-3: 190 90% 50%;
+  /* Cyan */
+  --chart-4: 320 70% 60%;
+  /* Pink */
+  --chart-5: 220 20% 45%;
   /* Slate */
-  --chart-5: 215 20% 45%;
-  /* Grey */
 }
 
 .dark {
-  /* Dark Mode - Jobento Premium Bento */
-  --background: 215 30% 15%;
-  /* Deep Slate Blue */
-  --foreground: 40 30% 96%;
-  /* Off-white Cream */
+  /* Dark Mode - Jobento Deep Space */
+  --background: 225 30% 10%;
+  /* Deep Navy */
+  --foreground: 220 30% 96%;
 
-  --card: 215 30% 18%;
-  --card-foreground: 40 30% 96%;
+  --card: 225 30% 14%;
+  --card-foreground: 220 30% 96%;
 
-  --popover: 215 30% 18%;
-  --popover-foreground: 40 30% 96%;
+  --popover: 225 30% 14%;
+  --popover-foreground: 220 30% 96%;
 
-  --primary: 25 95% 62%;
-  /* Slightly lighter Orange for dark mode */
+  --primary: 225 80% 65%;
+  /* Lighter Blue */
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 175 60% 45%;
-  /* Teal */
+  --secondary: 260 70% 70%;
+  /* Lighter Purple */
   --secondary-foreground: 0 0% 100%;
 
-  --muted: 215 30% 25%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 225 30% 20%;
+  --muted-foreground: 220 20% 65%;
 
-  --accent: 45 90% 60%;
-  --accent-foreground: 215 30% 15%;
+  --accent: 190 90% 60%;
+  --accent-foreground: 225 30% 10%;
 
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 215 30% 25%;
-  --input: 215 30% 25%;
-  --ring: 25 95% 62%;
+  --border: 225 30% 20%;
+  --input: 225 30% 20%;
+  --ring: 225 80% 65%;
 
-  --chart-1: 25 95% 62%;
-  --chart-2: 175 60% 45%;
-  --chart-3: 45 90% 60%;
-  --chart-4: 220 70% 50%;
+  --chart-1: 225 80% 65%;
+  --chart-2: 260 70% 70%;
+  --chart-3: 190 90% 60%;
+  --chart-4: 320 70% 70%;
   --chart-5: 160 60% 45%;
 }
 
@@ -167,7 +166,6 @@
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
@@ -187,17 +185,13 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-sans antialiased tracking-tight;
-    /* Jobento Bento Gradient */
-    background: linear-gradient(135deg, hsl(40, 50%, 98%) 0%, hsl(25, 60%, 96%) 100%),
-      var(--background);
-    background-attachment: fixed;
+  html {
+    min-height: 100%;
   }
 
-  .dark body {
-    background: linear-gradient(135deg, hsl(215, 30%, 15%) 0%, hsl(215, 30%, 12%) 100%),
-      var(--background);
+  body {
+    @apply text-foreground font-sans antialiased tracking-tight;
+    min-height: 100vh;
   }
 }
 
@@ -217,8 +211,8 @@
   }
 
   .neon-glow {
-    /* Reduced glow spread for precision */
-    box-shadow: 0 0 12px rgba(61, 124, 255, 0.3);
+    /* Reduced glow spread for precision - Blue/Purple Glow */
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
   }
 
   @keyframes gradient {

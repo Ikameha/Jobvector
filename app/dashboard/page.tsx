@@ -5,39 +5,21 @@ import { AppNav } from "@/components/app-nav"
 import { DashboardMetrics } from "@/components/dashboard/DashboardMetrics"
 import { RecentActivity } from "@/components/dashboard/RecentActivity"
 import { ProfileRadarChart } from "@/components/profile/ProfileRadarChart"
+import { KanbanBoard } from "@/components/dashboard/KanbanBoard"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Sparkles, Bookmark } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
-import { loadProfile, getSavedJobIds } from "@/lib/storage"
-import { fetchJobs } from "@/lib/jobApi"
-import { Profile, Job } from "@/lib/types"
-import { JobCard } from "@/components/jobs/JobCard"
-import { EmptyState } from "@/components/ui/empty-state"
+import { loadProfile } from "@/lib/storage"
+import { Profile } from "@/lib/types"
 import { PageTransition } from "@/components/ui/page-transition"
 
 export default function DashboardPage() {
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [savedJobs, setSavedJobs] = useState<Job[]>([])
-  const [loadingSaved, setLoadingSaved] = useState(true)
-
-  const loadSavedJobs = async () => {
-    setLoadingSaved(true)
-    const savedIds = getSavedJobIds()
-    if (savedIds.length > 0) {
-      const allJobs = await fetchJobs() // In real app, we'd have a bulk fetch or by IDs
-      const filtered = allJobs.filter(j => savedIds.includes(j.id))
-      setSavedJobs(filtered)
-    } else {
-      setSavedJobs([])
-    }
-    setLoadingSaved(false)
-  }
 
   useEffect(() => {
     setProfile(loadProfile())
-    loadSavedJobs()
   }, [])
 
   return (
@@ -61,11 +43,10 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Simplied Tabs - We might even remove tabs if only 'Overview' remains, but keeping for future scalability 'Applications' etc */}
         <Tabs defaultValue="overview" className="space-y-8">
           <TabsList className="bg-secondary/10 border border-secondary/20">
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="saved">Saved Jobs ({savedJobs.length})</TabsTrigger>
+            <TabsTrigger value="tracker">Application Tracker</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-8">
@@ -125,29 +106,8 @@ export default function DashboardPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="saved">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {loadingSaved ? (
-                <div className="col-span-full text-center py-10">Loading saved jobs...</div>
-              ) : savedJobs.length > 0 ? (
-                savedJobs.map(job => (
-                  <JobCard key={job.id} job={job} onSaveToggle={loadSavedJobs} />
-                ))
-              ) : (
-                <div className="col-span-full">
-                  <EmptyState
-                    icon={Bookmark}
-                    title="No saved jobs yet"
-                    description="Jobs you save will appear here for easy access."
-                    action={
-                      <Link href="/jobs">
-                        <Button variant="neon" className="mt-4">Browse Jobs</Button>
-                      </Link>
-                    }
-                  />
-                </div>
-              )}
-            </div>
+          <TabsContent value="tracker">
+            <KanbanBoard />
           </TabsContent>
         </Tabs>
       </div>

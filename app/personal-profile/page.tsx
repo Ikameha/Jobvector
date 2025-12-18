@@ -32,29 +32,37 @@ export default function ProfilePage() {
       <AppNav />
 
       <div className="container max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <User className="w-7 h-7 text-primary" />
+        {/* Unified Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
+              <User className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                My Profile
-              </h1>
-              <p className="text-muted-foreground mt-0.5">Manage your personal information and preferences</p>
+              {profile ? (
+                <>
+                  <h1 className="text-3xl font-bold tracking-tight">{profile.name || "User"}</h1>
+                  <div className="flex items-center gap-2 text-muted-foreground mt-1">
+                    <span className="capitalize font-medium text-foreground">{profile.experienceLevel}</span>
+                    <span>•</span>
+                    <span>{profile.yearsOfExperience} years exp.</span>
+                  </div>
+                </>
+              ) : (
+                <h1 className="text-3xl font-bold tracking-tight">My Profile</h1>
+              )}
             </div>
           </div>
 
           <Link href="/quiz">
-            <Button variant="outline" className="gap-2">
-              <Sparkles className="w-4 h-4" />
-              Enhance Profile
+            <Button variant="outline" className="gap-2 h-10">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Enhance with AI
             </Button>
           </Link>
         </div>
 
-        {/* Progress Bar */}
+        {/* Profile Power Progress */}
         <div className="mb-10">
           <ProfileProgressComponent variant="full" />
         </div>

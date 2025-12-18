@@ -26,9 +26,12 @@ export default function JobsPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   // Filters
+  // Filters
   const [searchQuery, setSearchQuery] = useState("")
   const [minSalary, setMinSalary] = useState(0)
   const [selectedWorkModes, setSelectedWorkModes] = useState<string[]>([])
+  const [sortBy, setSortBy] = useState<"match" | "date">("match")
+  const [showUrgent, setShowUrgent] = useState(false)
 
   useEffect(() => {
     const loadData = async () => {
@@ -43,7 +46,9 @@ export default function JobsPage() {
         jobsWithScores = allJobs.map(job => ({
           ...job,
           matchScore: calculateMatchScore(existingProfile, job)
-        })).sort((a, b) => (b.matchScore?.overall || 0) - (a.matchScore?.overall || 0))
+        }))
+        // Initial sort by match
+        jobsWithScores.sort((a, b) => (b.matchScore?.overall || 0) - (a.matchScore?.overall || 0))
       }
 
       setJobs(jobsWithScores)
@@ -77,8 +82,21 @@ export default function JobsPage() {
       result = result.filter(j => selectedWorkModes.includes(j.workMode.toLowerCase()))
     }
 
-    setFilteredJobs(result)
-  }, [searchQuery, minSalary, selectedWorkModes, jobs])
+    // Urgent (Mock logic: jobs posted in last 3 days)
+    if (showUrgent) {
+      const threeDaysAgo = Date.now() - 3 * 24 * 60 * 60 * 1000
+      result = result.filter(j => new Date(j.postedAt).getTime() > threeDaysAgo)
+    }
+
+    // Sort
+    if (sortBy === "match") {
+      result.sort((a, b) => (b.matchScore?.overall || 0) - (a.matchScore?.overall || 0))
+    } else {
+      result.sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime())
+    }
+
+    setFilteredJobs([...result])
+  }, [searchQuery, minSalary, selectedWorkModes, jobs, sortBy, showUrgent])
 
   const toggleWorkMode = (mode: string) => {
     setSelectedWorkModes(prev =>
@@ -90,6 +108,8 @@ export default function JobsPage() {
     setSearchQuery("")
     setMinSalary(0)
     setSelectedWorkModes([])
+    setSortBy("match")
+    setShowUrgent(false)
   }
 
   return (
@@ -110,13 +130,14 @@ export default function JobsPage() {
                 selectedWorkModes={selectedWorkModes}
                 onWorkModeChange={toggleWorkMode}
                 onClearFilters={clearFilters}
+                sortBy={sortBy}
+                onSortChange={setSortBy}
+                showUrgent={showUrgent}
+                onUrgentChange={setShowUrgent}
               />
             </GlassCard>
 
-            {/* Teaser Radar */}
-            <div className="hidden lg:block pt-4">
-              <ProfileRadarChart />
-            </div>
+            {/* Teaser Radar - Removed as requested */}
           </div>
 
           {/* Main Job List */}

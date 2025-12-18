@@ -132,9 +132,9 @@ export function JobCard({ job, matchScore, onSaveToggle }: JobCardProps) {
                                         <div className="space-y-1.5">
                                             <div className="flex justify-between text-xs">
                                                 <span className="text-muted-foreground">Skills Match</span>
-                                                <span className="font-bold">{matchScore.skills}%</span>
+                                                <span className="font-bold">{matchScore.skillsFit}%</span>
                                             </div>
-                                            <Progress value={matchScore.skills} className="h-2" indicatorClassName="bg-green-500" />
+                                            <Progress value={matchScore.skillsFit} className="h-2" indicatorClassName="bg-green-500" />
                                         </div>
                                         {/* Mock Data for visual breakdown as requested */}
                                         <div className="space-y-1.5">

@@ -12,8 +12,8 @@ export async function generateCoverLetter(job: Job, profile: Profile): Promise<s
 
     return `
 [Your Name]
-${profile.location || "[Your Location]"}
-${profile.email || "[Your Email]"}
+${profile.locationPreferences?.[0] || "[Your Location]"}
+${"[Your Email]"}
 ${date}
 
 Hiring Manager
@@ -24,12 +24,12 @@ ${job.location}
 
 Dear Hiring Team at ${job.company},
 
-I am writing to express my enthusiastic interest in the **${job.title}** role. With my background in **${profile.role || "software development"}** and a strong focus on **${matchingSkills.slice(0, 3).join(', ') || "innovation"}**, I am confident in my ability to contribute effectively to your team.
+I am writing to express my enthusiastic interest in the **${job.title}** role. With my background in **Software Engineering** and a strong focus on **${matchingSkills.slice(0, 3).join(', ') || "innovation"}**, I am confident in my ability to contribute effectively to your team.
 
 What draws me to ${job.company} is your commitment to excellence and innovation in the industry. My experience aligns perfectly with your needs, particularly:
 
 *   **Verified Skills:** My proficiency in **${matchingSkills.join(', ')}** directly matches your core requirements.
-*   **Experience Level:** As a **${profile.experience}** professional, I bring the ${job.experienceLevel} expertise you are looking for.
+*   **Experience Level:** As a **${profile.experienceLevel}** professional with **${profile.yearsOfExperience} years** of experience, I bring the ${job.experienceLevel} expertise you are looking for.
 *   **Driven by Impact:** I am eager to apply my skills to help ${job.company} achieve its goals.
 
 I would welcome the opportunity to discuss how my background and enthusiasm would translate into success for your team. Thank you for considering my application.

@@ -176,7 +176,7 @@ export function KanbanBoard() {
                                                                 {/* Metadata Tags */}
                                                                 <div className="flex flex-wrap gap-2 mb-3">
                                                                     <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 bg-secondary/30 font-normal">
-                                                                        {job.type}
+                                                                        {job.employmentType}
                                                                     </Badge>
                                                                     <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 bg-secondary/30 font-normal">
                                                                         {job.location}

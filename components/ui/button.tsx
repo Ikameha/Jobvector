@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow-md shadow-primary/20 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300',
+        default: 'bg-gradient-to-b from-[#4F8EF7] to-[#2563EB] text-white font-semibold rounded-full shadow-[0_8px_20px_rgba(37,99,235,0.35),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_10px_28px_rgba(182,96,72,0.35)] active:translate-y-[1px] active:shadow-[0_4px_12px_rgba(37,99,235,0.35)] focus-visible:shadow-[0_0_0_4px_rgba(252,236,201,0.6),0_10px_28px_rgba(37,99,235,0.35)] transition-all duration-300',
         destructive:
           'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
@@ -20,7 +20,7 @@ const buttonVariants = cva(
           'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         glass: 'bg-white/5 backdrop-blur-md border border-white/10 text-foreground hover:bg-white/10 hover:border-white/20 shadow-sm transition-all',
-        neon: 'bg-primary/5 border border-primary/30 text-primary shadow-[0_0_10px_rgba(61,124,255,0.1)] hover:shadow-[0_0_20px_rgba(61,124,255,0.25)] hover:bg-primary/10 hover:border-primary/50 transition-all duration-300',
+        neon: 'bg-gradient-to-b from-[#4F8EF7] to-[#2563EB] text-white font-semibold rounded-full shadow-[0_8px_20px_rgba(37,99,235,0.35),inset_0_1px_0_rgba(255,255,255,0.25)] hover:shadow-[0_10px_28px_rgba(182,96,72,0.35)] active:translate-y-[1px] active:shadow-[0_4px_12px_rgba(37,99,235,0.35)] focus-visible:shadow-[0_0_0_4px_rgba(252,236,201,0.6),0_10px_28px_rgba(37,99,235,0.35)] transition-all duration-300',
       },
       size: {
         default: 'h-10 px-4 py-2 has-[>svg]:px-3',

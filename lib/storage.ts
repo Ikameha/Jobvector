@@ -72,27 +72,36 @@ export interface Application {
 function migrateLegacyData() {
   if (typeof window === 'undefined') return
   const legacyData = localStorage.getItem(SAVED_JOBS_KEY_LEGACY)
+
   if (legacyData) {
-    const ids: string[] = JSON.parse(legacyData)
-    const currentTracker = getApplications()
+    try {
+      const ids: string[] = JSON.parse(legacyData)
+      // Fix: Read directly to avoid infinite recursion with getApplications()
+      const trackerRaw = localStorage.getItem(TRACKER_KEY)
+      const currentTracker: Application[] = trackerRaw ? JSON.parse(trackerRaw) : []
 
-    let hasChanges = false
-    ids.forEach(id => {
-      if (!currentTracker.some(app => app.jobId === id)) {
-        currentTracker.push({
-          jobId: id,
-          status: 'Saved',
-          dateUpdated: new Date().toISOString()
-        })
-        hasChanges = true
+      let hasChanges = false
+      ids.forEach(id => {
+        if (!currentTracker.some(app => app.jobId === id)) {
+          currentTracker.push({
+            jobId: id,
+            status: 'Saved',
+            dateUpdated: new Date().toISOString()
+          })
+          hasChanges = true
+        }
+      })
+
+      if (hasChanges) {
+        localStorage.setItem(TRACKER_KEY, JSON.stringify(currentTracker))
       }
-    })
-
-    if (hasChanges) {
-      localStorage.setItem(TRACKER_KEY, JSON.stringify(currentTracker))
+      // Clear legacy data to prevent future migrations
+      localStorage.removeItem(SAVED_JOBS_KEY_LEGACY)
+    } catch (e) {
+      console.error("Migration failed", e)
+      // If corrupt, clear it anyway to stop loop if it persisted
+      localStorage.removeItem(SAVED_JOBS_KEY_LEGACY)
     }
-    // Optional: Clear legacy data or keep as backup? keeping for safety.
-    localStorage.removeItem(SAVED_JOBS_KEY_LEGACY)
   }
 }
 

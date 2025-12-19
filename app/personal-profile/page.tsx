@@ -11,6 +11,7 @@ import { ProfileDetails } from "@/components/profile/ProfileDetails"
 import { ProfileForm } from "@/components/profile/ProfileForm"
 import { ProfileProgressComponent } from "@/components/profile/ProfileProgress"
 import { PageTransition } from "@/components/ui/page-transition"
+import { AsymmetricalBackground } from "@/components/ui/asymmetrical-background"
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null)
@@ -29,6 +30,7 @@ export default function ProfilePage() {
 
   return (
     <PageTransition className="min-h-screen">
+      <AsymmetricalBackground />
       <AppNav />
 
       <div className="container max-w-4xl mx-auto px-4 py-8">

@@ -14,6 +14,7 @@ import Link from "next/link"
 import { loadProfile } from "@/lib/storage"
 import { Profile } from "@/lib/types"
 import { PageTransition } from "@/components/ui/page-transition"
+import { AsymmetricalBackground } from "@/components/ui/asymmetrical-background"
 
 export default function DashboardPage() {
   const [profile, setProfile] = useState<Profile | null>(null)
@@ -24,6 +25,7 @@ export default function DashboardPage() {
 
   return (
     <PageTransition className="min-h-screen">
+      <AsymmetricalBackground />
       <AppNav />
 
       <div className="container mx-auto px-4 py-8">

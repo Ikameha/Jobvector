@@ -7,17 +7,20 @@ import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { PageTransition } from "@/components/ui/page-transition"
 import { ArrowRight, Sparkles, CheckCircle2, TrendingUp, ChefHat, UtensilsCrossed, Fish, Utensils, LayoutGrid, Sprout, Soup, Croissant } from "lucide-react"
 
+import { ScrollToTop } from "@/components/ui/scroll-to-top"
+import { FAQAccordion } from "@/components/landing/faq-accordion"
+
 export default function LandingPage() {
   return (
     <PageTransition className="min-h-screen">
       {/* Navigation */}
-      <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+      <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="relative h-16 w-48 transition-transform group-hover:scale-105">
                 <Image
-                  src="/jobento-logo-v2.png"
+                  src="/jobento-logo.png"
                   alt="Jobento"
                   fill
                   className="object-contain object-left"
@@ -35,98 +38,131 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 lg:pt-32 lg:pb-12 overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/25 rounded-full blur-[100px] animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/25 rounded-full blur-[100px] animate-pulse delay-1000" />
-        </div>
+      <section className="relative w-full pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* Asymmetrical radial gradient background */}
+        <div
+          className="absolute inset-0 -z-10 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(
+                800px circle at 20% 30%,
+                rgba(59,130,246,0.12),
+                transparent 60%
+              ),
+              radial-gradient(
+                600px circle at 80% 60%,
+                rgba(245,158,11,0.06),
+                transparent 55%
+              ),
+              #F8FAFC
+            `
+          }}
+        />
 
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm">
-            <Sparkles className="h-4 w-4" />
-            AI-Powered Career Navigation
-          </div>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-            Land the Right Job{" "}
-            <AnimatedText
-              text="Faster with AI"
-              gradient={true}
-              className="inline-block"
-            />
-          </h1>
-          <p className="mb-8 text-lg text-muted-foreground sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto flex flex-col gap-2">
-            <span>Stop applying blindly.</span>
-            <span>Start matching intelligently.</span>
-            <span>Your dream job is out there.</span>
-          </p>
-          <div className="flex flex-col items-center gap-6">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/personal-profile">
-                <Button size="lg" variant="neon" className="h-12 px-8 text-base group shadow-[0_0_30px_rgba(61,124,255,0.4)] hover:shadow-[0_0_40px_rgba(61,124,255,0.6)]">
-                  Find Jobs
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
 
-            </div>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground/80">
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Free · Instant results. 2-minute setup</span>
+            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+              Land the Right Job{" "}
+              <AnimatedText
+                text="Faster with AI"
+                gradient={true}
+                className="inline-block"
+              />
+            </h1>
+            <p className="mb-8 text-lg text-muted-foreground sm:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto flex flex-col gap-2">
+              <span>Stop applying blindly.</span>
+              <span>Start matching intelligently.</span>
+              <span>Your dream job is out there.</span>
+            </p>
+            <div className="flex flex-col items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href="/personal-profile">
+                  <Button size="lg" variant="neon" className="h-12 px-8 text-base group shadow-[0_0_30px_rgba(61,124,255,0.4)] hover:shadow-[0_0_40px_rgba(61,124,255,0.6)]">
+                    Find Jobs
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+
+              </div>
+              <div className="flex items-center gap-6 text-sm text-muted-foreground/80">
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-[#F59E0B]" /> Free <span className="text-[#F59E0B]">·</span> 2-minute setup</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section - How It Works */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 lg:pt-12 lg:pb-32">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How Jobento Works</h2>
-          <p className="text-lg text-muted-foreground">
-            Three simple steps to find your dream job with data-driven insights
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-          {/* Feature 1 */}
-          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-primary shadow-none group-hover:scale-110 transition-transform">
-              <ChefHat className="h-10 w-10" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Create Your Personal Profile</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Share your skills, experience, salary expectations, ideal location, and the company values that matter to you. In just minutes, Jobento transforms this data into a precise professional fingerprint uniquely tailored to your goals.
+      <section className="bg-background w-full pt-10 pb-20 lg:pt-12 lg:pb-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">How Jobento Works</h2>
+            <p className="text-lg text-muted-foreground">
+              Three simple steps to find your dream job with data-driven insights
             </p>
-          </GlassCard>
+          </div>
 
-          {/* Feature 2 */}
-          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-secondary shadow-none group-hover:scale-110 transition-transform">
-              <UtensilsCrossed className="h-10 w-10" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Get Your AI-Driven Matches</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              No endless scrolling. No generic listings. Jobento scans thousands of opportunities and surfaces only the ones that align with your profile—ranked using intelligent criteria weighted by what matters most to you.
-            </p>
-          </GlassCard>
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {/* Feature 1 */}
+            <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+              <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-xl bg-transparent shadow-none group-hover:scale-110 transition-transform">
+                <Image
+                  src="/create-profile-icon.png"
+                  alt="Create Profile"
+                  width={96}
+                  height={96}
+                  className="object-contain drop-shadow-md"
+                />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Create Your Personal Profile</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Share your skills, experience, salary expectations, ideal location, and the company values that matter to you. In just minutes, Jobento transforms this data into a precise professional fingerprint uniquely tailored to your goals.
+              </p>
+            </GlassCard>
 
-          {/* Feature 3 */}
-          <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-transparent text-accent-foreground shadow-none group-hover:scale-110 transition-transform">
-              <Fish className="h-10 w-10" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Apply with Confidence</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Target the roles where you're a top candidate. Jobento provides deep matching insights so you know exactly why you're a good fit, helping you tailor your application and land the interview.
-            </p>
-          </GlassCard>
+            {/* Feature 2 */}
+            <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+              <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-xl bg-transparent shadow-none group-hover:scale-110 transition-transform">
+                <Image
+                  src="/matches-icon.png"
+                  alt="AI Matches"
+                  width={96}
+                  height={96}
+                  className="object-contain drop-shadow-md"
+                />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Get Your AI-Driven Matches</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                No endless scrolling. No generic listings. Jobento scans thousands of opportunities and surfaces only the ones that align with your profile—ranked using intelligent criteria weighted by what matters most to you.
+              </p>
+            </GlassCard>
+
+            {/* Feature 3 */}
+            <GlassCard intensity="medium" neonBorder className="p-8 group hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+              <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-xl bg-transparent shadow-none group-hover:scale-110 transition-transform">
+                <Image
+                  src="/apply-icon.png"
+                  alt="Apply with Confidence"
+                  width={96}
+                  height={96}
+                  className="object-contain drop-shadow-md"
+                />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Apply with Confidence</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Target the roles where you're a top candidate. Jobento provides deep matching insights so you know exactly why you're a good fit, helping you tailor your application and land the interview.
+              </p>
+            </GlassCard>
+          </div>
         </div>
       </section>
 
 
 
       {/* Visual Demo Section */}
-      <section className="border-y border-border bg-black/40 py-20 lg:py-32 overflow-hidden relative">
-        <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+      <section className="py-32 lg:py-48 bg-gradient-to-b from-background via-primary/5 to-background overflow-hidden relative">
+        <div className="absolute inset-0 bg-primary/5 blur-3xl opacity-50" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="mx-auto max-w-2xl text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">See How Jobento Matches You to the Right Jobs</h2>
@@ -137,33 +173,14 @@ export default function LandingPage() {
 
           <div className="mx-auto max-w-5xl relative">
             <GlassCard intensity="medium" className="p-1 rounded-2xl overflow-hidden border-white/10 shadow-2xl">
-              <div className="bg-background/80 backdrop-blur-xl p-8 rounded-xl relative overflow-hidden min-h-[400px] flex items-center justify-center">
-                {/* Visual Mockup - Scanning Effect */}
-                <div className="relative w-full max-w-md mx-auto aspect-[3/4] md:aspect-[4/3] bg-card rounded-lg border border-border shadow-2xl p-6 flex flex-col gap-4">
-                  {/* Header */}
-                  <div className="flex items-center justify-between pb-4 border-b border-border">
-                    <div className="h-4 w-24 bg-muted rounded animate-pulse" />
-                    <div className="h-8 w-8 rounded-full bg-primary/20 animate-pulse" />
-                  </div>
-                  {/* Content */}
-                  <div className="space-y-3">
-                    <div className="h-6 w-3/4 bg-muted rounded animate-pulse" />
-                    <div className="h-4 w-1/2 bg-muted/50 rounded animate-pulse" />
-                    <div className="flex gap-2 pt-2">
-                      <div className="h-6 w-16 bg-blue-500/20 rounded-full animate-pulse" />
-                      <div className="h-6 w-16 bg-purple-500/20 rounded-full animate-pulse" />
-                    </div>
-                  </div>
-                  {/* Scanning Line */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent h-[50%] w-full animate-[scan_3s_ease-in-out_infinite] pointer-events-none" />
-
-                  {/* Match Popover Mock */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md border border-primary/50 shadow-[0_0_30px_rgba(61,124,255,0.3)] p-6 rounded-xl text-center animate-in fade-in zoom-in duration-700 slide-in-from-bottom-4 delay-1000 fill-mode-forwards opacity-0 flex flex-col items-center">
-                    <div className="text-4xl font-bold text-primary mb-1">94%</div>
-                    <div className="text-sm font-medium text-muted-foreground">Match Score</div>
-                    <Button size="sm" variant="neon" className="mt-4 w-full">View Details</Button>
-                  </div>
-                </div>
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-xl"
+                  src="https://www.youtube.com/embed/Lhu7OzAbjXs"
+                  title="Jobento Demo Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
             </GlassCard>
           </div>
@@ -171,7 +188,27 @@ export default function LandingPage() {
       </section>
 
       {/* Benefits Section - Why Choose */}
-      <section className="bg-muted/30 py-20 lg:py-32">
+      <section className="relative w-full py-20 lg:py-32 overflow-hidden">
+        {/* Asymmetrical radial gradient background */}
+        <div
+          className="absolute inset-0 -z-10 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(
+                800px circle at 20% 30%,
+                rgba(59,130,246,0.12),
+                transparent 60%
+              ),
+              radial-gradient(
+                600px circle at 80% 60%,
+                rgba(245,158,11,0.06),
+                transparent 55%
+              ),
+              #F8FAFC
+            `
+          }}
+        />
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -181,15 +218,20 @@ export default function LandingPage() {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Stop applying to hundreds of jobs blindly. Jobento uses intelligent matching to spotlight the opportunities where you're most likely to succeed—so you can invest your time and energy where it truly counts.
               </p>
-              <ul className="space-y-6">
+              <ul className="space-y-8">
                 {[
-                  { icon: Utensils, title: "Data-Driven, Not Guesswork", text: "Match scores with transparent explanations—know exactly why a job fits you." },
-                  { icon: LayoutGrid, title: "Multi-Dimensional Analysis", text: "We weigh skills, experience, location, salary, and culture to find your perfect fit." },
-                  { icon: ChefHat, title: "Your Career Command Center", text: "Organize, track, and manage your applications in one intuitive dashboard." },
+                  { imageSrc: "/data-driven-icon.png", title: "Data-Driven, Not Guesswork", text: "Match scores with transparent explanations—know exactly why a job fits you." },
+                  { imageSrc: "/multi-dimensional-icon.png", title: "Multi-Dimensional Analysis", text: "We weigh skills, experience, location, salary, and culture to find your perfect fit." },
+                  { imageSrc: "/command-center-icon.png", title: "Your Career Command Center", text: "Organize, track, and manage your applications in one intuitive dashboard." },
                 ].map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
-                      <benefit.icon className="h-5 w-5 text-primary" />
+                  <li key={idx} className="flex items-start gap-5">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 overflow-hidden shadow-sm">
+                      {benefit.imageSrc ? (
+                        <Image src={benefit.imageSrc} alt={benefit.title} width={56} height={56} className="object-contain p-1.5" />
+                      ) : (
+                        // @ts-ignore
+                        benefit.icon && <benefit.icon className="h-6 w-6 text-primary" />
+                      )}
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground mb-1 text-lg">{benefit.title}</h4>
@@ -218,6 +260,7 @@ export default function LandingPage() {
                     { label: "Experience Level", score: 85, color: "bg-primary" },
                     { label: "Location Match", score: 100, color: "bg-chart-3" },
                     { label: "Salary Range", score: 75, color: "bg-chart-4" },
+                    { label: "Company's Culture", score: 88, color: "bg-chart-5" },
                   ].map((item) => (
                     <div key={item.label}>
                       <div className="flex items-center justify-between mb-1.5">
@@ -231,6 +274,9 @@ export default function LandingPage() {
                       </div>
                     </div>
                   ))}
+                  <div className="pt-2 text-center">
+                    <span className="text-xs font-medium text-muted-foreground">+ other criterias</span>
+                  </div>
                 </div>
               </GlassCard>
             </div>
@@ -239,34 +285,36 @@ export default function LandingPage() {
       </section >
 
       {/* Social Proof & KPI Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 text-center">
-        <p className="text-xl font-medium text-muted-foreground mb-16">
-          Trusted by <span className="text-foreground font-bold">+1700</span> early job seekers
-        </p>
+      <section className="bg-background w-full py-12 lg:py-16 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xl font-medium text-muted-foreground mb-16">
+            Trusted by <span className="text-foreground font-bold">+1700</span> early job seekers
+          </p>
 
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold tracking-tight text-center sm:text-3xl mb-12">
-            Built for Better Results with <span className="text-primary">AI-powered matching</span>
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <GlassCard className="p-6 text-center flex flex-col items-center justify-center gap-2" intensity="light">
-              <div className="text-4xl font-bold text-foreground">
-                <AnimatedCounter end={3500} suffix="+" />
-              </div>
-              <p className="text-muted-foreground font-medium">Jobs analyzed daily</p>
-            </GlassCard>
-            <GlassCard className="p-6 text-center flex flex-col items-center justify-center gap-2" intensity="light">
-              <div className="text-4xl font-bold text-foreground">
-                <AnimatedCounter end={300} suffix="+" />
-              </div>
-              <p className="text-muted-foreground font-medium">Jobs matched</p>
-            </GlassCard>
-            <GlassCard className="p-6 text-center flex flex-col items-center justify-center gap-2" intensity="light">
-              <div className="text-4xl font-bold text-foreground">
-                24/7
-              </div>
-              <p className="text-muted-foreground font-medium">Job scanning</p>
-            </GlassCard>
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold tracking-tight text-center sm:text-3xl mb-12">
+              Built for Better Results with <span className="text-primary">AI-powered matching</span>
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <GlassCard className="p-6 text-center flex flex-col items-center justify-center gap-2" intensity="light">
+                <div className="text-4xl font-bold text-foreground">
+                  <AnimatedCounter end={3500} suffix="+" />
+                </div>
+                <p className="text-muted-foreground font-medium">Jobs analyzed daily</p>
+              </GlassCard>
+              <GlassCard className="p-6 text-center flex flex-col items-center justify-center gap-2" intensity="light">
+                <div className="text-4xl font-bold text-foreground">
+                  <AnimatedCounter end={300} suffix="+" />
+                </div>
+                <p className="text-muted-foreground font-medium">Jobs matched</p>
+              </GlassCard>
+              <GlassCard className="p-6 text-center flex flex-col items-center justify-center gap-2" intensity="light">
+                <div className="text-4xl font-bold text-foreground">
+                  24/7
+                </div>
+                <p className="text-muted-foreground font-medium">Job scanning</p>
+              </GlassCard>
+            </div>
           </div>
         </div>
       </section>
@@ -276,67 +324,34 @@ export default function LandingPage() {
 
 
       {/* FAQ Section */}
-      < section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32" >
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {[
-              { q: "How does the matching algorithm work?", a: "Jobento uses multi-dimensional analysis to compare your profile against job requirements. We evaluate skills alignment, experience level, location preferences, salary expectations, and cultural fit to generate a comprehensive match score." },
-              { q: "Is my data private and secure?", a: "Absolutely. Your data is encrypted, never shared with third parties without your consent, and you control what information employers see. We are GDPR compliant." },
-              { q: "Is Jobento free to use?", a: "Yes! Creating your profile and browsing matched opportunities is completely free. No credit card required." },
-              { q: "How accurate are the match scores?", a: "Our algorithm achieves 87% accuracy in predicting job fit based on user feedback. Scores above 80% indicate strong alignment." },
-            ].map((faq, i) => (
-              <GlassCard key={i} intensity="light" className="p-6">
-                <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
-                <p className="text-muted-foreground leading-relaxed">{faq.a}</p>
-              </GlassCard>
-            ))}
-          </div>
+      <section className="relative w-full py-20 lg:py-32 overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="absolute top-0 left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] animate-pulse" />
+          <div className="absolute bottom-0 right-[-10%] w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] animate-pulse delay-1000" />
         </div>
-      </section >
 
-      {/* CTA Section */}
-      < section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 border-t border-border" >
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto h-20 w-48 mb-6 relative">
-            <Image
-              src="/jobento-logo-v2.png"
-              alt="Jobento"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-6">
-            Ready to Find Your Perfect Match?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-            Create your job seeker profile in minutes and start discovering opportunities that align with your career
-            goals.
-          </p>
-          <div className="flex flex-col items-center gap-6">
-            <Link href="/personal-profile">
-              <Button size="lg" variant="neon" className="h-14 px-10 text-lg group">
-                Find Jobs
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-            <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              <span className="flex items-center gap-1.5"><ChefHat className="h-3 w-3" /> Bank-level Encryption</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3 w-3" /> GDPR Compliant</span>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">Frequently Asked Questions</h2>
+            <div className="max-w-3xl mx-auto">
+              <FAQAccordion />
             </div>
           </div>
         </div>
-      </section >
+      </section>
+
+
 
       {/* Footer */}
-      < footer className="border-t border-border bg-muted/30" >
+      <footer className="border-t border-border bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-2">
               <Link href="/" className="flex items-center gap-2 mb-4 group">
-                <div className="relative h-12 w-32 transition-transform group-hover:scale-105">
+                <div className="relative h-12 w-[280px] transition-transform group-hover:scale-105">
                   <Image
-                    src="/jobento-logo-v2.png"
+                    src="/jobento-logo.png"
                     alt="Jobento"
                     fill
                     className="object-contain object-left"
@@ -412,6 +427,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer >
+      <ScrollToTop />
     </PageTransition >
   )
 }

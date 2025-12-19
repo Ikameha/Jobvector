@@ -31,9 +31,9 @@ export function AppNav() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative h-12 w-40 transition-transform group-hover:scale-105">
+            <div className="relative h-10 w-[230px] transition-transform group-hover:scale-105">
               <Image
-                src="/jobento-logo-v2.png"
+                src="/jobento-logo.png"
                 alt="Jobento"
                 fill
                 className="object-contain object-left"

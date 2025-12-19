@@ -8,6 +8,7 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { User, Bell, Shield, Palette } from "lucide-react"
+import { AsymmetricalBackground } from "@/components/ui/asymmetrical-background"
 
 export default function SettingsPage() {
     const [emailNotifications, setEmailNotifications] = useState(true)
@@ -16,6 +17,7 @@ export default function SettingsPage() {
 
     return (
         <div className="min-h-screen">
+            <AsymmetricalBackground />
             <AppNav />
 
             <div className="container max-w-4xl mx-auto px-4 py-8">

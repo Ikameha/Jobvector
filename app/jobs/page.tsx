@@ -14,6 +14,7 @@ import { EmptyState } from "@/components/ui/empty-state"
 import { SearchX } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PageTransition } from "@/components/ui/page-transition"
+import { AsymmetricalBackground } from "@/components/ui/asymmetrical-background"
 
 interface JobWithScore extends Job {
   matchScore?: MatchScore
@@ -114,6 +115,7 @@ export default function JobsPage() {
 
   return (
     <PageTransition className="min-h-screen">
+      <AsymmetricalBackground />
       <AppNav />
 
       <div className="container mx-auto px-4 py-8">

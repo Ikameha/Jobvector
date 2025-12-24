@@ -97,23 +97,6 @@ export function JobFilters({
                         ))}
                     </div>
                 </div>
-
-                {/* Salary Range */}
-                <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                        <Label className="text-xs uppercase text-muted-foreground font-semibold">Min Salary</Label>
-                        <span className="text-xs text-muted-foreground">${(salaryRange[0] / 1000).toFixed(0)}k+</span>
-                    </div>
-                    <Slider
-                        defaultValue={[salaryRange[0]]}
-                        max={200000}
-                        min={30000}
-                        step={5000}
-                        value={[salaryRange[0]]}
-                        onValueChange={(vals) => onSalaryChange([vals[0], salaryRange[1]])}
-                        className="py-2"
-                    />
-                </div>
             </div>
         </div>
     )

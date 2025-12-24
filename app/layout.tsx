@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { MobileNav } from "@/components/mobile-nav"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -93,6 +94,7 @@ export default function RootLayout({
 
         <AuthProvider>
           {children}
+          <MobileNav />
         </AuthProvider>
         <Analytics />
       </body>

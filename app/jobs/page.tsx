@@ -11,10 +11,11 @@ import { Job, Profile, MatchScore } from "@/lib/types"
 import { GlassCard } from "@/components/ui/glass-card"
 import { ProfileRadarChart } from "@/components/profile/ProfileRadarChart"
 import { EmptyState } from "@/components/ui/empty-state"
-import { SearchX } from "lucide-react"
+import { SearchX, SlidersHorizontal, ArrowUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PageTransition } from "@/components/ui/page-transition"
 import { AsymmetricalBackground } from "@/components/ui/asymmetrical-background"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
 interface JobWithScore extends Job {
   matchScore?: MatchScore
@@ -118,10 +119,43 @@ export default function JobsPage() {
       <AsymmetricalBackground />
       <AppNav />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 md:py-8">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold">Browse Jobs</h1>
+
+          {/* Mobile Filter Button */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="default" className="lg:hidden h-11">
+                <SlidersHorizontal className="w-4 h-4 mr-2" />
+                Filters
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[85vw] sm:w-[450px] overflow-y-auto px-4 py-6 sm:px-6">
+              <SheetTitle className="text-xl font-bold mb-6">Job Filters</SheetTitle>
+              <div className="space-y-6">
+                <JobFilters
+                  searchQuery={searchQuery}
+                  onSearchChange={setSearchQuery}
+                  salaryRange={[minSalary, 200000]}
+                  onSalaryChange={(val) => setMinSalary(val[0])}
+                  selectedWorkModes={selectedWorkModes}
+                  onWorkModeChange={toggleWorkMode}
+                  onClearFilters={clearFilters}
+                  sortBy={sortBy}
+                  onSortChange={setSortBy}
+                  showUrgent={showUrgent}
+                  onUrgentChange={setShowUrgent}
+                />
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar Filters */}
-          <div className="lg:col-span-1 space-y-6">
+          {/* Desktop Sidebar Filters - Hidden on Mobile */}
+          <div className="hidden lg:block lg:col-span-1 space-y-6">
             <h2 className="text-xl font-bold px-1">Job Filters</h2>
             <GlassCard intensity="light" className="p-5">
               <JobFilters
@@ -145,10 +179,9 @@ export default function JobsPage() {
           {/* Main Job List */}
           <div className="lg:col-span-3 space-y-6">
             <div className="flex items-center justify-between mb-2">
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-xl md:text-2xl font-bold">
                 {isLoading ? "Loading..." : `${filteredJobs.length} Recommended Jobs`}
               </h1>
-              {profile && <span className="text-sm text-green-500 font-medium">Sorted by match score</span>}
             </div>
 
             {isLoading ? (

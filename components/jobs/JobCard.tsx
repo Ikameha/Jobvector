@@ -5,7 +5,8 @@ import { Job, MatchScore } from "@/lib/types"
 import { GlassCard } from "@/components/ui/glass-card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Building2, MapPin, DollarSign, Clock, ArrowRight, Bookmark, EyeOff, Info } from "lucide-react"
+import { Building2, MapPin, DollarSign, Clock, ArrowRight, Bookmark, Trash2, Info } from "lucide-react"
+import { MatchScoreRing } from "@/components/jobs/match-score-ring"
 import Link from "next/link"
 import { Skeleton } from "@/components/ui/skeleton"
 import { isJobSaved, toggleSavedJob } from "@/lib/storage"
@@ -60,6 +61,7 @@ export function JobCard({ job, matchScore, onSaveToggle }: JobCardProps) {
     return (
         <div className="group relative rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md hover:border-primary/20">
             <Link href={`/jobs/${job.id}`} className="absolute inset-0 z-0" aria-label={`View details for ${job.title}`} />
+
             <div className="p-5 flex flex-col h-full relative z-10 pointer-events-none">
                 {/* Header */}
                 <div className="flex items-start justify-between gap-4 mb-4 pointer-events-auto">
@@ -81,51 +83,22 @@ export function JobCard({ job, matchScore, onSaveToggle }: JobCardProps) {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
-                        {/* Hide Button */}
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
-                            onClick={handleHide}
-                            title="Hide job"
-                        >
-                            <EyeOff className="w-4 h-4" />
-                        </Button>
-
-                        {/* Save Button */}
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className={cn(
-                                "h-8 w-8 hover:bg-primary/10 transition-colors",
-                                saved ? "text-primary" : "text-muted-foreground"
-                            )}
-                            onClick={handleSave}
-                            title={saved ? "Unsave job" : "Save job"}
-                        >
-                            <Bookmark className={cn("w-4 h-4", saved && "fill-current")} />
-                        </Button>
-
-                        {/* Bento Score Popover */}
+                        {/* Match Score Popover */}
                         {matchScore && (
                             <Popover>
                                 <PopoverTrigger asChild>
                                     <button
                                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
-                                        className="flex items-center gap-1.5 pl-1 pr-2.5 py-1 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors border border-primary/20 hover:border-primary/30 group/score ml-2"
+                                        className="relative group/score ml-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold text-white shadow-sm ${score >= 80 ? 'bg-green-600' : score >= 60 ? 'bg-blue-600' : 'bg-orange-600'
-                                            }`}>
-                                            {score}
-                                        </div>
-                                        <span className="text-xs font-bold text-foreground group-hover/score:text-primary transition-colors">Bento</span>
+                                        <MatchScoreRing score={score} size={54} strokeWidth={4} className="bg-background rounded-full shadow-sm" />
                                     </button>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-80 p-0 overflow-hidden" align="end" sideOffset={5}>
                                     <div className="bg-primary/5 p-4 border-b border-border">
                                         <h4 className="font-bold flex items-center gap-2 text-primary">
                                             <Info className="w-4 h-4" />
-                                            Bento Match Breakdown
+                                            Match Score Breakdown
                                         </h4>
                                     </div>
                                     <div className="p-4 space-y-4">
@@ -197,9 +170,37 @@ export function JobCard({ job, matchScore, onSaveToggle }: JobCardProps) {
                     )}
                 </div>
 
-                {/* Action - Minimalistic Link */}
+                {/* Action - Minimalistic Link & Buttons */}
                 <div className="flex items-center justify-between pt-4 border-t border-border/50 pointer-events-auto">
-                    <span className="text-xs text-muted-foreground">Posted 2 days ago</span>
+                    <div className="flex items-center gap-3">
+                        <span className="text-xs text-muted-foreground">Posted 2 days ago</span>
+
+                        <div className="flex items-center gap-1">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-7 w-7 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors rounded-full"
+                                onClick={handleHide}
+                                title="Delete job"
+                            >
+                                <Trash2 className="w-3.5 h-3.5" />
+                            </Button>
+
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className={cn(
+                                    "h-7 w-7 hover:bg-primary/10 transition-colors rounded-full",
+                                    saved ? "text-primary" : "text-muted-foreground"
+                                )}
+                                onClick={handleSave}
+                                title={saved ? "Unsave job" : "Save job"}
+                            >
+                                <Bookmark className={cn("w-3.5 h-3.5", saved && "fill-current")} />
+                            </Button>
+                        </div>
+                    </div>
+
                     <Link href={`/jobs/${job.id}`} className="text-sm font-medium text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
                         View Details <ArrowRight className="w-3.5 h-3.5" />
                     </Link>

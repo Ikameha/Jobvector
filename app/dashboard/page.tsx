@@ -13,6 +13,7 @@ import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { loadProfile } from "@/lib/storage"
 import { Profile } from "@/lib/types"
+import { ProfileProgressComponent } from "@/components/profile/ProfileProgress"
 import { PageTransition } from "@/components/ui/page-transition"
 import { AsymmetricalBackground } from "@/components/ui/asymmetrical-background"
 
@@ -37,36 +38,41 @@ export default function DashboardPage() {
               Here's what's happening with your job search today.
             </p>
           </div>
-          <Link href="/jobs">
-            <Button variant="neon" className="gap-2">
-              <Sparkles className="w-4 h-4" />
-              Find New Matches
-            </Button>
-          </Link>
+        </div>
+
+        {/* Profile Completion - Moved from Profile Page */}
+        <div className="mb-8">
+          <ProfileProgressComponent />
         </div>
 
         <Tabs defaultValue="overview" className="space-y-8">
           <TabsList className="bg-secondary/10 border border-secondary/20">
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="tracker">Application Tracker</TabsTrigger>
+            <TabsTrigger value="tracker">Saved Jobs</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-8">
-            {/* Key Metrics */}
-            <DashboardMetrics />
-
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content Area */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="lg:col-span-3 space-y-8">
 
                 {/* Recommended Jobs Preview */}
                 <section>
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-semibold">Top Recommendations</h2>
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-xl font-semibold flex items-center gap-2">
+                      Jobs Found
+                      <span className="text-muted-foreground font-normal text-lg">(142)</span>
+                    </h2>
                     <Link href="/jobs" className="text-sm text-primary hover:underline flex items-center gap-1">
                       View All <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
+
+                  {/* Avg Match Score KPI */}
+                  <DashboardMetrics />
+
+                  <p className="text-lg font-semibold mb-4 mt-8">Top recommendations</p>
+
 
                   <div className="grid gap-4">
                     {/* Placeholder Job Cards */}
@@ -99,9 +105,6 @@ export default function DashboardPage() {
 
               {/* Sidebar */}
               <div className="space-y-8">
-                {/* Profile Radar Chart */}
-                <ProfileRadarChart />
-
                 {/* Recent Activity */}
                 <RecentActivity />
               </div>
@@ -111,8 +114,8 @@ export default function DashboardPage() {
           <TabsContent value="tracker">
             <KanbanBoard />
           </TabsContent>
-        </Tabs>
-      </div>
-    </PageTransition>
+        </Tabs >
+      </div >
+    </PageTransition >
   )
 }

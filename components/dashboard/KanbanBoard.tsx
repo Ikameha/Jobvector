@@ -33,22 +33,15 @@ const COLUMNS: { id: ApplicationStatus; title: string; color: string; icon: any;
         borderClass: 'border-purple-200 dark:border-purple-900/50'
     },
     {
-        id: 'Interviewing',
-        title: 'Interviewing',
-        color: 'text-orange-500',
-        icon: MessageSquare,
-        bgClass: 'bg-orange-50 dark:bg-orange-950/20',
-        borderClass: 'border-orange-200 dark:border-orange-900/50'
-    },
-    {
-        id: 'Offer',
-        title: 'Offer',
-        color: 'text-green-500',
-        icon: Trophy,
-        bgClass: 'bg-green-50 dark:bg-green-950/20',
-        borderClass: 'border-green-200 dark:border-green-900/50'
-    },
-]
+        id: 'Applied',
+        title: 'Applied',
+        color: 'text-purple-500',
+        icon: Send,
+        bgClass: 'bg-purple-50 dark:bg-purple-950/20',
+        borderClass: 'border-purple-200 dark:border-purple-900/50'
+    }
+];
+
 
 export function KanbanBoard() {
     // State
